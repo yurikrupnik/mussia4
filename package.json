@@ -44,6 +44,9 @@
   },
   "homepage": "https://github.com/yurikrupnik/mussia4#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@loadable/webpack-plugin": "^5.14.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.10",
