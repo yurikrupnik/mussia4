@@ -1,0 +1,57 @@
+{
+  "name": "@puzzle-mussia/render-input",
+  "version": "7.0.2",
+  "description": "> TODO: description",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://bitbucket.org/krupnikyuri/puzzle-pzl/packages/render-input#readme",
+  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/krupnikyuri/puzzle-pzl.git",
+    "directory": "packages/ui/render-input"
+  },
+  "scripts": {
+    "start": "rollup --config=../../../rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
+    "test": "jest src --colors",
+    "build": "rollup --config=../../../rollup.config.js"
+  },
+  "peerDependencies": {
+    "formik": "^2.1.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.14",
+    "formik": "^2.1.5",
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.3",
+    "autoprefixer": "^9.8.0",
+    "formik": "^2.1.5",
+    "react-dom": "^16.13.1"
+  },
+  "jest": {
+    "collectCoverage": false,
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    }
+  }
+}
