@@ -2,7 +2,7 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "declaration": false,
-    "module": "ES2015",
+    "module": "ESNext",
     "target": "es6",
     "strict": true,
     "esModuleInterop": true,
@@ -17,7 +17,7 @@
     "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules",

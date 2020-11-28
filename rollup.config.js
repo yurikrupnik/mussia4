@@ -1,7 +1,6 @@
-// import postcss from "rollup-plugin-postcss";
-// import autoprefixer from "autoprefixer";
-import typescript from "rollup-plugin-typescript2";
-// import esbuild from "rollup-plugin-esbuild";
+import postcss from "rollup-plugin-postcss";
+import autoprefixer from "autoprefixer";
+import esbuild from "rollup-plugin-esbuild";
 // does not create *.d.ts file and compile in 1 way
 
 const globals = {
@@ -24,16 +23,16 @@ const defaultModule = {
         },
     ],
     plugins: [
-        typescript({
-            // target: "es2017",
-            // tsconfig: "./tsconfig.json",
-            useTsconfigDeclarationDir: true,
-        }),
-        // postcss({
-        //     minimize: true,
-        //     modules: true,
-        //     plugins: [autoprefixer()],
+        esbuild({}),
+        // typescript({
+        //     // tsconfig: "./tsconfig.json",
+        //     useTsconfigDeclarationDir: true,
         // }),
+        postcss({
+            minimize: true,
+            modules: true,
+            plugins: [autoprefixer()],
+        }),
     ],
 };
 

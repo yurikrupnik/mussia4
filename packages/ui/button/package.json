@@ -25,7 +25,9 @@
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
     "test": "jest src --colors",
-    "build": "rollup --config=../../../rollup.config.js"
+    "build": "run-p build:code build:dec",
+    "build:code": "rollup --config=../../../rollup.config.js",
+    "build:dec": "tsc --emitDeclarationOnly"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
