@@ -41,7 +41,8 @@ module.exports = (env) => {
     console.log("env", env);
     console.log("PORT", process.env.PORT);
     console.log("MODULE_PATH", process.env.MODULE_PATH);
-    const isProd = env ? !!env.prod : false;
+    // const isProd = env ? !!env.prod : false;
+    const isProd = true;
     // const config = isProd ? {} : require(path.resolve(cwd, './src/config')); // eslint-disable-line
 
     return {
@@ -54,9 +55,10 @@ module.exports = (env) => {
             extensions: [".ts", ".tsx", ".json", ".js", ".jsx", ".css", ".scss"],
             alias,
         },
-        devtool: isProd ? "source-map" : "eval-cheap-module-source-map",
+        // devtool: isProd ? "source-map" : "eval-cheap-module-source-map",
         entry: "./client.tsx",
         output: {
+            // filename: "[name].[fullhash].js",
             filename: "[name].js",
             chunkFilename: "[name].js",
             path: path.resolve(process.cwd(), "dist/assets"),
@@ -72,27 +74,6 @@ module.exports = (env) => {
                         loader: "tsx",
                         target: "es2015",
                     },
-                },
-                // todo remove from package
-                // {
-                //     test: /\.(js|jsx)$/,
-                //     use: [
-                //         {
-                //             loader: "babel-loader",
-                //             // options: {
-                //             //     rootMode: 'upward',
-                //             // }
-                //         },
-                //         // {
-                //         //     loader: 'eslint-loader'
-                //         // }
-                //     ],
-                //     // exclude: /node_modules/,
-                // },
-                {
-                    test: /\.tsx?$/,
-                    use: "ts-loader",
-                    exclude: /node_modules/,
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -112,27 +93,27 @@ module.exports = (env) => {
                         },
                     ],
                 },
-                {
-                    test: /\.ejs$/,
-                    use: "raw-loader",
-                },
-                {
-                    test: /\.(png|jpg|jpeg|gif|ico|svg)$/,
-                    use: [
-                        {
-                            loader: "file-loader",
-                            options: {},
-                        },
-                    ],
-                },
+                // {
+                //     test: /\.ejs$/,
+                //     use: "raw-loader",
+                // },
+                // {
+                //     test: /\.(png|jpg|jpeg|gif|ico|svg)$/,
+                //     use: [
+                //         {
+                //             loader: "file-loader",
+                //             options: {},
+                //         },
+                //     ],
+                // },
             ],
         },
         plugins: [
             new ESBuildPlugin(),
             new webpack.DefinePlugin({
                 // 'process.env.USERS_ENDPOINT': JSON.stringify(process.env.USERS_ENDPOINT),
-                // 'process.env.PORT': JSON.stringify(process.env.PORT),
-                // 'process.env.port': JSON.stringify(process.env.port),
+                "process.env.PORT": JSON.stringify(process.env.PORT),
+                "process.env.DATABASE_URL": JSON.stringify(process.env.DATABASE_URL),
                 // 'process.env.host': JSON.stringify(process.env.host),
                 // 'process.env.HOST': JSON.stringify(process.env.HOST),
                 // 'process.env.dest_port': JSON.stringify(process.env.dest_port),
@@ -155,25 +136,35 @@ module.exports = (env) => {
                 },
             }),
             // new SizePlugin(),
-            new MiniCssExtractPlugin({
-                filename: !isProd ? "[name].css" : "[name].[hash].css",
-                chunkFilename: !isProd ? "[id].css" : "[id].[hash].css",
-            }),
+            // new MiniCssExtractPlugin({
+            //     filename: !isProd ? "[name].css" : "[name].[hash].css",
+            //     chunkFilename: !isProd ? "[id].css" : "[id].[hash].css",
+            // }),
             new LoadablePlugin(),
-            !isProd && process.cwd().includes("webserver1")
-                ? new BundleAnalyzerPlugin({})
-                : new BundleAnalyzerPlugin({
-                      analyzerMode: "static",
-                      openAnalyzer: false,
-                  }),
+            // !isProd && process.cwd().includes("webserver1")
+            //     ? new BundleAnalyzerPlugin({})
+            //     : new BundleAnalyzerPlugin({
+            //           analyzerMode: "static",
+            //           openAnalyzer: false,
+            //       }),
         ],
         devServer: {
-            port: json.config.port + 1 || 4001,
-            open: true,
-            host: process.env.NODE_ENV_DOCKER ? "0.0.0.0" : "localhost",
+            // port: json.config.port + 1 || 4001,
+            // open: true,
+            // host: process.env.NODE_ENV_DOCKER ? "0.0.0.0" : "localhost",
             // index: "index.ejs",
+            // proxy: {
+            //     "/": { target: `http://localhost:${json.config.port}` },
+            // },
+            contentBase: path.join(__dirname, "dist/"),
+            // port: json.config.port + 100 || 8080,
+            // port: 8081,
+            port: Number(process.env.PORT) + 1 || json.config.port + 1 || 8080,
+            open: true,
+            disableHostCheck: true,
+            host: process.env.NODE_ENV_DOCKER ? "0.0.0.0" : "localhost",
             proxy: {
-                "/": { target: `http://localhost:${json.config.port}` },
+                "/": { target: `http://localhost:${Number(process.env.PORT) || json.config.port}` },
             },
         },
     };

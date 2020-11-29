@@ -115,7 +115,7 @@ jobs:
               #          name: my-artifact
               #      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
               #      - run: npm whoami
-            - run: npm run npm-publish
+              #            - run: npm run npm-publish
               #      - run: npx lerna changed
               #      - run: npx lerna publish patch  --yes --no-push --conventional-commits
               #      - run: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit

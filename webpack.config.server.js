@@ -1,18 +1,22 @@
-
 // const reduce = require('lodash/reduce');
 const webpack = require("webpack");
 const path = require("path");
-const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodeExternals = require("webpack-node-externals");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const GenerateJsonPlugin = require("generate-json-webpack-plugin");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const NodemonPlugin = require("nodemon-webpack-plugin");
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 // const SwaggerJSDocWebpackPlugin = require("swagger-jsdoc-webpack-plugin");
 // const JsDocPlugin = require("jsdoc-webpack-plugin-v2");
 // const { StatsWriterPlugin } = require('webpack-stats-plugin');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const CopyPlugin = require("copy-webpack-plugin");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const LoadablePlugin = require("@loadable/webpack-plugin");
 // const SizePlugin = require("size-plugin");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ESBuildPlugin } = require("esbuild-loader");
 
 const filename = "server.js";
@@ -28,7 +32,8 @@ const entry = json.name.includes("webserver") || json.name.includes("docs") ? ".
 // console.log('alias', alias);
 
 module.exports = (env, argv) => {
-    const isProd = env ? !!env.prod : false;
+    // const isProd = env ? !!env.prod : false;
+    const isProd = false;
     // const isDebug = env ? !!env.debug : false;
     console.log("cwd", cwd);
     console.log("env, argv", env, argv);
@@ -42,14 +47,13 @@ module.exports = (env, argv) => {
         },
         target: "node", // in order to ignore built-in modules like path, fs, etc.
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
-        devtool: isProd ? "" : "eval-cheap-module-source-map",
+        // devtool: isProd ? "" : "eval-cheap-module-source-map",
         entry,
         output: {
             path: path.resolve(cwd, "dist"),
             chunkFilename: "[name].js",
             filename,
             publicPath: "/",
-
         },
         mode: isProd ? "production" : "development",
         module: {
@@ -59,30 +63,9 @@ module.exports = (env, argv) => {
                     loader: "esbuild-loader",
                     options: {
                         loader: "tsx",
-                        target: "es2015",
+                        target: "esnext",
                     },
                 },
-                // todo remove from package
-                // {
-                //     test: /\.(js|jsx)$/,
-                //     use: [
-                //         {
-                //             loader: "babel-loader",
-                //             options: {
-                //                 rootMode: "upward",
-                //             },
-                //         },
-                //         // {
-                //         //     loader: 'eslint-loader'
-                //         // }
-                //     ],
-                //     exclude: /node_modules/,
-                // },
-                // {
-                //     test: /\.tsx?$/,
-                //     use: "ts-loader",
-                //     exclude: /node_modules/,
-                // },
                 {
                     test: /\.(css|scss)$/,
                     use: ["css-loader", "sass-loader"],
