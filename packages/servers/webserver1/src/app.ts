@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import ejs from "ejs";
 import cookieParser from "cookie-parser";
+import rateLimit from "express-rate-limit";
 import db from "./services/db";
 import passport from "./services/passport";
 import api from "./api";
@@ -14,6 +15,14 @@ import render from "./services/render";
 import { isProd, databaseUrl } from "./config";
 
 const app = express();
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
+
+//  apply to all requests
+// app.use(limiter);
 
 const assets = path.join(process.cwd(), !isProd ? "dist" : "", "assets");
 // const files = path.join(process.cwd(), !isProd ? 'dist' : '', '');
@@ -33,7 +42,7 @@ app.use("/report", (req, res) => {
 app.use(cookieParser());
 app.use(db(databaseUrl));
 app.use(passport(app));
-app.use(api);
+app.use(limiter, api);
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
     if (req.isAuthenticated()) {
         console.log("Authenticated"); // eslint-disable-line no-console
