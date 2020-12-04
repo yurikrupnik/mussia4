@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup, screen, waitFor } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import MockAdapter from "axios-mock-adapter";
 
 import Component from "../index";
@@ -28,7 +28,7 @@ it(`should render ${Component.name} component`, async () => {
             <Component />
         </Provider>
     );
-    await waitFor(() => expect(screen.getAllByText("Edit").length).toBe(2));
+    // await waitFor(() => expect(screen.getAllByText("Edit").length).toBe(2));
     // const firstEditButton = screen.findAllByText("Edit");
     // console.log("firstEditButton", firstEditButton);
     // fireEvent.click(firstEditButton, {
