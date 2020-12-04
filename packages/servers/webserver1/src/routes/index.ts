@@ -3,16 +3,18 @@
 // import loadable from "@loadable/component";
 import { Routes } from "../types";
 import Dashboard from "./Dashboard";
+import Login from "./Login";
+
 // import React from "react";
 // import Main from "./Main";
 // import Profile from "./Profile";
 // import Error from "./Error";
 // import Header from './Header';
 // import Root from './Root';
-// import Dashboard from './Dashboard';
+// import Login from './Login';
 // import Header from './Header/DefaultHeader';
 // const Header = loadable(() => import(/* webpackChunkName: "DefaultHeader" */ './Header/DefaultHeader'));
-// const Dashboard = loadable(() => import(/* webpackChunkName: "dashboard" */ "./Dashboard"));
+// const Login = loadable(() => import(/* webpackChunkName: "dashboard" */ "./Login"));
 // import Brands from './Brands';
 // import Careers from './Careers';
 // import Dreamteam from './Dreamteam';
@@ -56,6 +58,12 @@ const routes: Routes = [
         //     return Promise.resolve(["ra"]);
         // },
     },
+    {
+        component: Login,
+        path: "/",
+        key: "main",
+        exact: true,
+    },
     // {
     //     component: Profile,
     //     path: "/profile/:id",
@@ -70,7 +78,6 @@ const routes: Routes = [
     //     // },
     // },
     // {
-
     //     path: '/',
     //     component: Header,
     //     // render: (props) => {
