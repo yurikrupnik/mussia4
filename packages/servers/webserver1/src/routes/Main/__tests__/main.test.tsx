@@ -1,9 +1,9 @@
 import React from "react";
 import { render, cleanup, screen, waitFor } from "@testing-library/react";
+import MockAdapter from "axios-mock-adapter";
 
 import Component from "../index";
 import { Provider } from "../../../api/users/context";
-import MockAdapter from "axios-mock-adapter";
 import request from "../../../api/request";
 
 const mock = new MockAdapter(request);

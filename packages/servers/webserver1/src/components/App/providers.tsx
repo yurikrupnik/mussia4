@@ -6,10 +6,7 @@ interface Props {
     children: React.FC;
 }
 
-const Providers: React.FC<Props> = ({ children }) => {
-    return <>{children}</>;
-};
-
+const Providers: React.FC<Props> = ({ children }) => <>{children}</>;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // const Providers: React.FC<Props> = ({ children, providers }): React.ReactElement =>

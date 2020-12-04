@@ -81,6 +81,7 @@ Model.find().then((res) => {
     if (!res.length) {
         Model.insertMany(
             createFake(10, () => {
+                console.log("fa");
                 // const mo = new Model({});
                 return {
                     email: faker.internet.email(),

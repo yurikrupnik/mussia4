@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // import { StaticRouter } from 'react-router-dom';
 // // import { createBrowserHistory } from 'history'; // eslint-disable-line
@@ -47,7 +46,7 @@
 //     // expect(input.value).toBe('oz');
 //     // expect(greetingTextNode).toBeTruthy();
 // });
-test('render App Component', () => {
+test("render App Component", () => {
     // const props = {};
     expect(1).toBe(1);
     // render(

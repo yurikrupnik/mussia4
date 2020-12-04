@@ -11,7 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import { useField } from "formik"; // FormikProps, InjectedFormikProps, FieldProps
 
-type options = Array<{ _id: string; name: string }>;
+type Options = Array<{ _id: string; name: string }>;
 
 interface Props {
     name: string;
@@ -25,7 +25,7 @@ interface Props {
     rows?: number;
     // defaultValue: {};
     // styles: {};
-    options?: options;
+    options?: Options;
     onChange?: () => void;
     handleChangeCallback?: () => void;
     MenuOption?: React.ReactElement;
@@ -84,6 +84,7 @@ const RenderInput: React.FC<Props> = (props) => {
     // const { errors, touched } = form;
     const [{ value, onChange, onBlur }, { touched, error }] = field;
     const handleOnChange = useCallback((e, checked?: boolean | string) => {
+        console.log("checked", checked);
         // console.log("evemt", e, checked);
         // console.log("a", a);
         onChange(e);

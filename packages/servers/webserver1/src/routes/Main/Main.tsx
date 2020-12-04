@@ -6,17 +6,17 @@ import TextField from "@material-ui/core/TextField";
 // import { useQuery } from "react-query";
 // import times from "lodash/times";
 // import api from "../../api/users/api";
+// import { useHistory } from "react-router-dom";
+import { useToggle, useIdle } from "react-use";
 import { IUser } from "../../types";
-import { useHistory } from "react-router-dom";
 import useUsers from "../../hooks/users";
 // import usersApi from "../../api/users/api";
 // import { useToggle } from "../../hooks";
 // import { useToggle, useIdle } from "react-use";
-import {useToggle, useIdle} from "react-use";
 // import useIdle from "react-use/esm/useIdle";
 
 const Main: React.FC = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const users = useUsers();
     const [s] = useToggle(false);
     const isIdle = useIdle(3e3);
@@ -27,24 +27,24 @@ const Main: React.FC = () => {
     }, []);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleEdit = useCallback((e) => {
-        history.push(`/profile/${e.target.dataset.id}`);
-    }, []);
-    const handleDelete = useCallback((e) => {
-        users.remove(e.currentTarget.dataset.id);
-        // history.push(`/profile/${e.target.dataset.id}`);
-    }, []);
+    // const handleEdit = useCallback((e) => {
+    //     history.push(`/profile/${e.target.dataset.id}`);
+    // }, []);
+    // const handleDelete = useCallback(() => {
+    //     // users.remove(e.currentTarget.dataset.id);
+    //     // history.push(`/profile/${e.target.dataset.id}`);
+    // }, []);
 
     return (
         <div>
             {/*<Button onClick={() => refetch(true, {}, { shit: true })}>refetch</Button>*/}
-            <Button onClick={() => users.setCustomQuery({ name: "" })}>set custom query</Button>
+            {/*<Button onClick={() => users.setCustomQuery({ name: "" })}>set custom query</Button>*/}
             helo from main
             {/*<pre>{JSON.stringify(user.data, null, 2)}</pre>*/}
             <TextField value={params.email} onChange={handleChange} />
             <Button
                 color="primary"
-                onClick={(e) => {
+                onClick={() => {
                     // useQuery(["users", { email }], api.get);
                     // console.log("e", e.target);
                     // // const arr = new Array(10);
@@ -62,21 +62,20 @@ const Main: React.FC = () => {
             >
                 Aris button
             </Button>
-            <ul>
-                {Array.isArray(users.data) &&
-                    users.data.map((todo) => (
-                        <li data-id={todo._id} key={todo._id}>
-                            {/* @ts-ignore */}
-                            {todo.email}
-                            <Button data-id={todo._id} onClick={handleDelete}>
-                                Delete
-                            </Button>
-                            <Button data-id={todo._id} onClick={handleEdit}>
-                                Edit
-                            </Button>
-                        </li>
-                    ))}
-            </ul>
+            {/*<ul>*/}
+            {/*    {Array.isArray(users.data) &&*/}
+            {/*        users.data.map((todo) => (*/}
+            {/*            <li data-id={todo._id} key={todo._id}>*/}
+            {/*                {todo.email}*/}
+            {/*                <Button data-id={todo._id} onClick={handleDelete}>*/}
+            {/*                    Delete*/}
+            {/*                </Button>*/}
+            {/*                <Button data-id={todo._id} onClick={handleEdit}>*/}
+            {/*                    Edit*/}
+            {/*                </Button>*/}
+            {/*            </li>*/}
+            {/*        ))}*/}
+            {/*</ul>*/}
             {/*<ul>*/}
             {/*    {users.data !== undefined &&*/}
             {/*        Array.isArray(users.data.ids) &&*/}

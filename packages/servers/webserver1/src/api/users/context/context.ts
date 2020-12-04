@@ -8,7 +8,7 @@ import { createContext } from "react";
 
 interface Context {
     // data: IUser[] | undefined;
-    // error: Error | null;
+    error: Error | null;
     // remove: (id: string) => Promise<string>;
     // post: (body: Partial<IUser>) => Promise<IUser>;
     // put: (body: Partial<IUser>) => Promise<IUser>;

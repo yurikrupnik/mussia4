@@ -1,9 +1,9 @@
 // import useToggle from "../index";
 // import { renderHook, act, cleanup } from "@testing-library/react-hooks";
 
-test('sine', () => {
+test("sine", () => {
     expect(1).toBe(1);
-})
+});
 // afterEach(cleanup);
 //
 // describe(useToggle.name, () => {

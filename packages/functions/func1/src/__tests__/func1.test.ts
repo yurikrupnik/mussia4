@@ -29,7 +29,7 @@ it("func1 test", () => {
     //     // Call tested function
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    func1(<e.Request>req, res);
+    func1(<Request>req, res);
     expect(json).toHaveBeenCalledTimes(1);
     expect(json).toHaveBeenCalledWith({ ok: "yes" });
     //     // expect(send.calls.length).toHaveBeenCalledTimes(1)

@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider } from "@material-ui/core";
 
-import { Theme } from "../../types";
+import { Theme as MuiTheme } from "../../types";
 
 // const Context = createContext({
 //     theme: createMuiTheme({}),
 // });
 
 interface Props {
-    defaultTheme: Theme;
+    defaultTheme: MuiTheme;
 }
 
 const Theme: React.FC<Props> = (props) => {

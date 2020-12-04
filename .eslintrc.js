@@ -23,6 +23,7 @@ module.exports = {
             },
         ],
         "comma-dangle": 0,
+        "no-underscore-dangle": 0,
         // "no-underscore-dangle": 0,
         // "react/display-name": "warn",
         // "react-hooks/rules-of-hooks": "warn",

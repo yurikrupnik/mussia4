@@ -51,6 +51,7 @@ const AddUserForm: React.FC<AddUserModalProps> = (props) => {
 
     // const { post } = useUsers();
     const sub = useCallback((values: Values) => {
+        console.log("values", values);
         // post(values).then(() => {
         //     history.push("/");
         // });
@@ -113,6 +114,7 @@ const AddUserForm: React.FC<AddUserModalProps> = (props) => {
 interface Props {}
 
 const Profile: FC<Props> = (props) => {
+    console.log("props profile", props);
     // const params = useParams();
     // const history = useHistory();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -132,6 +134,7 @@ const Profile: FC<Props> = (props) => {
 
     // const handleDelete =s
     const handleSubmit = useCallback((item) => {
+        console.log({ item });
         // remove(item._id).then(() => {
         //     console.log("deleted id", id);
         //     history.push("/");
@@ -195,18 +198,13 @@ const Profile: FC<Props> = (props) => {
                     aria-describedby="alert-dialog-description"
                 >
                     <Formik initialValues={{}} onSubmit={handleSubmit}>
-                        {(formProps) => {
-                            console.log("formProps", formProps);
-
+                        {() => {
                             <Form>
                                 <DialogTitle color="primary" id="alert-dialog-title">
                                     Edid
                                 </DialogTitle>
                                 <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        name
-                                        {"?"}
-                                    </DialogContentText>
+                                    <DialogContentText id="alert-dialog-description">name ?</DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button onClick={toggleIsEdit} color="primary">

@@ -30,7 +30,7 @@ const Sr: React.FC<Props> = (props) => {
     // console.log("form", form);
     return (
         <Formik onSubmit={jest.fn()} initialValues={{ name: "" }}>
-            <RenderInput name="name" options={options} type={type} label={"label"} />
+            <RenderInput name="name" options={options} type={type} label="label" />
         </Formik>
     );
 };

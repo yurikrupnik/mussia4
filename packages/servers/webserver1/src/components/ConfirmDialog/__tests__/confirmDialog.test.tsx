@@ -11,7 +11,7 @@ it(`should  component`, () => {
     // render(<Component  />);
     render(
         <Component
-            open={true}
+            open
             handleClose={jest.fn()}
             handleConfirm={jest.fn()}
             selected={{ _id: "1" }}

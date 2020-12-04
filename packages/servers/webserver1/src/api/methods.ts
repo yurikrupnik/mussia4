@@ -17,9 +17,8 @@ const handleError = (res: Response) => {
 const respondWithResult = (res: Response) => (entity: any) => res.status(200).json(entity);
 
 // todo check statics
-const schema = (Model: mongoose.Model<any>) => (req: Request, res: Response) => {
-    return res.status(200).json(Model.schema.statics);
-};
+const schema = (Model: mongoose.Model<never>) => (req: Request, res: Response) =>
+    res.status(200).json(Model.schema.statics);
 
 // type dmMo = IUser | {};
 
@@ -30,9 +29,7 @@ const find = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
     Model.find({ _id: req.params.id }).then(respondWithResult(res)).catch(handleError(res));
 
 const removeOne = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
-    Model.findOneAndRemove({ _id: req.params.id })
-        .then(responseId(req, res))
-        .catch(handleError(res));
+    Model.findOneAndRemove({ _id: req.params.id }).then(responseId(req, res)).catch(handleError(res));
 
 const create = (Model: mongoose.Model<any>) => (req: Request, res: Response) => {
     const user = new Model(req.body);

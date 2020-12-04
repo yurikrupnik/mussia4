@@ -1,3 +1,7 @@
 import useToggle from "./useToggle";
 
-export { useToggle };
+function a() {
+    return "h";
+}
+
+export { useToggle, a };
