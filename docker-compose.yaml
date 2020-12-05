@@ -50,40 +50,41 @@ services:
             - 3332:3332
             - 3333:3333
         command: npm run fucntion
-    #  api-users:
-    #    image: gcr.io/puzzle-pzl/api-users
-    #    build:
-    #      context: packages/servers/api-users
-    #      args:
-    #        - modulePath=/packages/servers/api-users
-    ##        - port=7000
-    #        - NODE_ENV_DOCKER=true
-    #        - DATABASE_URL=mongodb://db/service1-db
-    ##        - HOST=0.0.0.0
-    #    container_name: api-users
-    #    environment:
-    ##      - PORT=7000
-    #      - MODULE_PATH=packages/servers/api1
-    #      - NODE_ENV_DOCKER=true
-    #      - DATABASE_URL=mongodb://db/service1-db
-    #    ports:
-    #      - 7000:8080
-    ##      - 8000:8000
-    #    command: npm run start
-    #    depends_on:
-    #      - db
+    #    api-users:
+    #        image: gcr.io/puzzle-pzl/api-users
+    #        build:
+    #            context: packages/servers/api-users
+    #            args:
+    #                - modulePath=/packages/servers/api-users
+    #                #        - port=7000
+    #                - NODE_ENV_DOCKER=true
+    #                - DATABASE_URL=mongodb://db/service1-db
+    #        #        - HOST=0.0.0.0
+    #        container_name: api-users
+    #        environment:
+    #            #      - PORT=7000
+    #            - MODULE_PATH=packages/servers/api1
+    #            - NODE_ENV_DOCKER=true
+    #            - DATABASE_URL=mongodb://db/service1-db
+    #        ports:
+    #            - 7000:8080
+    #        #      - 8000:8000
+    #        command: npm run start
+    #        depends_on:
+    #            - db
     #    deploy:
     #      replicas: 1
     #
     webserver1:
-        image: gcr.io/puzzle-pzl/webserver1
+        #        image: gcr.io/puzzle-pzl/webserver1
+        image: webserver1
         build:
             context: packages/servers/webserver1
             args:
                 #        - port=9000
-                - NODE_ENV_DOCKER=true
-                #        - HOST=gateway1
-                - DATABASE_URL=mongodb://db/service1-db
+                #                - NODE_ENV_DOCKER=true
+                #                #        - HOST=gateway1
+                #                - DATABASE_URL=mongodb://db/service1-db
                 #        - HOST=0.0.0.0
                 - modulePath=/packages/servers/webserver1
         container_name: webserver1

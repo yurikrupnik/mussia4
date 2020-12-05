@@ -10,11 +10,11 @@ RUN echo $PWD
 #COPY docs ./docs
 COPY babel.config.js .
 COPY .eslintrc.js .
-COPY webpack.config.server.ts .
-COPY webpack.config.client.ts .
-COPY rollup.config.ts .
+COPY webpack.config.server.js .
+COPY webpack.config.client.js .
+COPY rollup.config.js .
 COPY rollup.config.functions.ts .
 COPY lerna.json .
-COPY styleguide.config.ts .
+#COPY styleguide.config.ts .
 # mayb delete it - not using
-COPY rollup.config.server.ts .
+#COPY rollup.config.server.js .

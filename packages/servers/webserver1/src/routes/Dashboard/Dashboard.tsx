@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 
 const Dashboard: React.FC = () => (
     <div>
-        <Button>Dashboard</Button>
+        <Button>Dashboard sds</Button>
     </div>
 );
 
