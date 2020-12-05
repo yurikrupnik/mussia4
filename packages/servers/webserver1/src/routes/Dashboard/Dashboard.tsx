@@ -13,7 +13,7 @@ const Dashboard: React.FC = () => (
     </div>
 );
 
-// Dashboard.propTypes = {
+// Login.propTypes = {
 //
 // };
 
