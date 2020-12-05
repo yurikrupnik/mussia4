@@ -47,7 +47,7 @@ const queryConfig = {
 const App: React.FC<Props> = ({ theme, routes }) => (
     <ReactQueryConfigProvider config={queryConfig}>
         <ThemeProvider theme={createMuiTheme(theme)}>
-                {routes.map((route) => (
+            {routes.map((route) => (
                     <Route
                     strict={route.strict}
                     sensitive={route.sensitive}
