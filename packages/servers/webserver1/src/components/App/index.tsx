@@ -47,7 +47,6 @@ const queryConfig = {
 const App: React.FC<Props> = ({ theme, routes }) => (
     <ReactQueryConfigProvider config={queryConfig}>
         <ThemeProvider theme={createMuiTheme(theme)}>
-            <div className="main-nav">
                 {routes.map((route) => (
                     <Route
                     strict={route.strict}
@@ -58,7 +57,6 @@ const App: React.FC<Props> = ({ theme, routes }) => (
                     component={route.component}
                     />
             ))}
-            </div>
         </ThemeProvider>
     </ReactQueryConfigProvider>
 );
