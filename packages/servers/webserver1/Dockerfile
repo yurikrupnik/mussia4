@@ -1,4 +1,4 @@
-FROM gcr.io/puzzle-pzl/lerna AS builder
+FROM gcr.io/mussia4/lerna AS builder
 ARG port=8080
 ENV PORT=$port
 
