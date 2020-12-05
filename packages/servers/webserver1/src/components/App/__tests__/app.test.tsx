@@ -4,7 +4,7 @@
 // import { render, cleanup } from '@testing-library/react';
 // import App from '../index';
 // import routes from '../../../routes';
-// import Component from "../../Dashboard";
+// import Component from "../../Login";
 
 // jest.mock('../../routes'); // eslint-disable-line no-undef
 

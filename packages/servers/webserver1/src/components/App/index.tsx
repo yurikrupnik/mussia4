@@ -17,10 +17,11 @@ import { Route } from "react-router-dom";
 // import { Provider as UsersProvider } from "../../api/users/context";
 // import providers from "../../api/providers";
 // import Providers from "./providers";
-// import Dashboard from "../Dashboard";
+// import Login from "../Login";
 // import Providers from '';
 // import Layout from './layout';
 import { Theme, Routes } from "../../types";
+import "./style.sass";
 
 interface Props {
     theme: Theme;
