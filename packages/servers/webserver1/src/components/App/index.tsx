@@ -48,14 +48,14 @@ const App: React.FC<Props> = ({ theme, routes }) => (
     <ReactQueryConfigProvider config={queryConfig}>
         <ThemeProvider theme={createMuiTheme(theme)}>
             {routes.map((route) => (
-                    <Route
+                <Route
                     strict={route.strict}
                     sensitive={route.sensitive}
                     exact={route.exact}
                     key={route.key}
                     path={route.path}
                     component={route.component}
-                    />
+                />
             ))}
         </ThemeProvider>
     </ReactQueryConfigProvider>
