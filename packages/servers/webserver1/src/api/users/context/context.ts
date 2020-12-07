@@ -6,19 +6,19 @@ import { createContext } from "react";
 // import { useMutation } from "react-query";
 // import api from "../api";
 
-interface Context {
-    // data: IUser[] | undefined;
-    error: Error | null;
-    // remove: (id: string) => Promise<string>;
-    // post: (body: Partial<IUser>) => Promise<IUser>;
-    // put: (body: Partial<IUser>) => Promise<IUser>;
-    // customQuery: Partial<IUser>;
-    // setCustomQuery: (params: Partial<IUser>) => void;
-    // ad: string;
-    // setQuery: (query: Partial<IUser>) => Promise<any>;
-}
+// interface Context {
+//     // data: IUser[] | undefined;
+//     error: Error | null;
+//     // remove: (id: string) => Promise<string>;
+//     // post: (body: Partial<IUser>) => Promise<IUser>;
+//     // put: (body: Partial<IUser>) => Promise<IUser>;
+//     // customQuery: Partial<IUser>;
+//     // setCustomQuery: (params: Partial<IUser>) => void;
+//     // ad: string;
+//     // setQuery: (query: Partial<IUser>) => Promise<any>;
+// }
 
-export default createContext(<Context>{
+export default createContext({
     // ad: "ads",
     // data: [
     //     {

@@ -16,5 +16,5 @@ env: standard
 service: default
 env_variables:
     DB_USER: admin
-    DB_PASSWORD: admin
-    DATABASE_URL: "@ds215759.mlab.com:15759/client-app-users"
+    DB_PASSWORD: AXnEdzgKsyg8XVaN
+    DB_URL: "@cluster0.zurzw.mongodb.net/"

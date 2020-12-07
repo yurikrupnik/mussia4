@@ -40,16 +40,16 @@ services:
     #    deploy:
     #      replicas: 1
     ##
-    functions:
-        image: puzzle-plz/functions
-        build:
-            context: packages/functions
-        #      root: packages/functions
-        container_name: functions
-        ports:
-            - 3332:3332
-            - 3333:3333
-        command: npm run fucntion
+    #    functions:
+    #        image: puzzle-plz/functions
+    #        build:
+    #            context: packages/functions
+    #        #      root: packages/functions
+    #        container_name: functions
+    #        ports:
+    #            - 3332:3332
+    #            - 3333:3333
+    #        command: npm run fucntion
     #    api-users:
     #        image: gcr.io/puzzle-pzl/api-users
     #        build:
@@ -89,10 +89,13 @@ services:
                 - modulePath=/packages/servers/webserver1
         container_name: webserver1
         environment:
-            - DEST_PORT=8000
-            - HOST=gateway1
+            #            - DEST_PORT=8000
+            #            - HOST=gateway1
             - NODE_ENV_DOCKER=true
-            - DATABASE_URL=mongodb://db/service1-db
+            #            - DATABASE_URL=mongodb://db/mussia4
+            - DB_URL=@cluster0.zurzw.mongodb.net/
+            - DB_PASSWORD=AXnEdzgKsyg8XVaN
+            - DB_USER=admin
             - PORT=9000
         #      - NODE_ENV_DOCKER=true
         ports:

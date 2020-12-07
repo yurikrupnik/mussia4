@@ -1,6 +1,7 @@
 // const reduce = require('lodash/reduce');
 const webpack = require("webpack");
 const path = require("path");
+const noop = require("lodash/noop");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodeExternals = require("webpack-node-externals");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -35,6 +36,7 @@ module.exports = (env, argv) => {
     // const isProd = env ? !!env.prod : false;
     const isProd = false;
     // const isDebug = env ? !!env.debug : false;
+    console.log("process.env.NODE_ENV", process.env.NODE_ENV);
     console.log("cwd", cwd);
     console.log("env, argv", env, argv);
     // !isProd && require(path.resolve(cwd, './src/config')); // eslint-disable-line
@@ -84,33 +86,35 @@ module.exports = (env, argv) => {
         plugins: [
             new ESBuildPlugin({}),
             new webpack.DefinePlugin({
-                // 'process.env.PORT': JSON.stringify(process.env.PORT),
-                // 'process.env.USERS_HOST': JSON.stringify(process.env.USERS_HOST),
-                // 'process.env.PROJECTS_HOST': JSON.stringify(process.env.PROJECTS_HOST),
-                // 'process.env.port': JSON.stringify(process.env.port),
-                // 'process.env.host': JSON.stringify(process.env.host),
-                // 'process.env.HOST': JSON.stringify(process.env.HOST),
-                // 'process.env.DEBUG': JSON.stringify(isDebug),
-                // 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
-                // 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST),
-                // 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST)
+                // "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+                // "process.env.DB_PASSWORD": JSON.stringify(process.env.DB_PASSWORD),
+                // "process.env.DB_USER": JSON.stringify(process.env.DB_USER),
+                // "process.env.DB_URL": JSON.stringify(process.env.DB_URL),
+                // "process.env.PORT": JSON.stringify(process.env.PORT),
+                //     // 'process.env.USERS_HOST': JSON.stringify(process.env.USERS_HOST),
+                //     // 'process.env.PROJECTS_HOST': JSON.stringify(process.env.PROJECTS_HOST),
+                //     // 'process.env.port': JSON.stringify(process.env.port),
+                //     // 'process.env.host': JSON.stringify(process.env.host),
+                //     // 'process.env.HOST': JSON.stringify(process.env.HOST),
+                //     // 'process.env.DEBUG': JSON.stringify(isDebug),
+                //     // 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
+                //     // 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST),
+                //     // 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST)
             }),
             // new SizePlugin(),
             // new StatsWriterPlugin({
             //     fields: ["assets", "modules"]
             // }),
             new LoadablePlugin(),
-            new GenerateJsonPlugin(
-                "package.json",
-                Object.assign({}, json, {
-                    main: filename,
-                    files: [],
-                    scripts: {
-                        start: `node ${filename}`,
-                    },
-                    devDependencies: {},
-                })
-            ),
+            new GenerateJsonPlugin("package.json", {
+                ...json,
+                main: filename,
+                files: [],
+                scripts: {
+                    start: `node ${filename}`,
+                },
+                devDependencies: {},
+            }),
             // new SwaggerJSDocWebpackPlugin({
             //     swaggerDefinition: {
             //         openapi: '3.0.0',
@@ -147,7 +151,7 @@ module.exports = (env, argv) => {
                       watch: path.resolve(cwd, "dist", filename),
                       verbose: true,
                   })
-                : () => {},
+                : noop,
         ],
     };
 };

@@ -37,12 +37,13 @@ const alias = reduce(
 );
 
 module.exports = (env) => {
-    console.log("json", json.config);
+    // console.log("json", json.config);
+    // console.log("process.env.DB_PASSWORD", process.env.DB_PASSWORD);
     console.log("env", env);
-    console.log("PORT", process.env.PORT);
-    console.log("MODULE_PATH", process.env.MODULE_PATH);
+    // console.log("PORT", process.env.PORT);
+    // console.log("MODULE_PATH", process.env.MODULE_PATH);
     // const isProd = env ? !!env.prod : false;
-    const isProd = true;
+    const isProd = false;
     // const config = isProd ? {} : require(path.resolve(cwd, './src/config')); // eslint-disable-line
 
     return {
@@ -110,16 +111,24 @@ module.exports = (env) => {
         },
         plugins: [
             new ESBuildPlugin(),
+            // new webpack.EnvironmentPlugin({
+            //     NODE_ENV: "development", // use 'development' unless process.env.NODE_ENV is defined
+            //     DEBUG: false,
+            // }),
             new webpack.DefinePlugin({
-                // 'process.env.USERS_ENDPOINT': JSON.stringify(process.env.USERS_ENDPOINT),
-                "process.env.PORT": JSON.stringify(process.env.PORT),
-                "process.env.DATABASE_URL": JSON.stringify(process.env.DATABASE_URL),
-                // 'process.env.host': JSON.stringify(process.env.host),
-                // 'process.env.HOST': JSON.stringify(process.env.HOST),
-                // 'process.env.dest_port': JSON.stringify(process.env.dest_port),
-                // 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
-                // 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST),
-                // 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST)
+                // "process.env.PORT": JSON.stringify(process.env.PORT),
+                // "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+                // "process.env.USERS_ENDPOINT": JSON.stringify(process.env.USERS_ENDPOINT),
+                // "process.env.DB_PASSWORD": JSON.stringify(process.env.DB_PASSWORD),
+                // "process.env.DB_USER": JSON.stringify(process.env.DB_USER),
+                // "process.env.DATABASE_URL": JSON.stringify(process.env.DATABASE_URL),
+                //     //     // "process.env.PORT": JSON.stringify(process.env.PORT),
+                //     //     // 'process.env.host': JSON.stringify(process.env.host),
+                //     //     // 'process.env.HOST': JSON.stringify(process.env.HOST),
+                //     //     // 'process.env.dest_port': JSON.stringify(process.env.dest_port),
+                //     //     // 'process.env.DEST_PORT': JSON.stringify(process.env.DEST_PORT),
+                //     //     // 'process.env.DESTINATION_HOST': JSON.stringify(process.env.DESTINATION_HOST),
+                //     //     // 'process.env.DOCKER_HOST': JSON.stringify(process.env.DOCKER_HOST)
             }),
             new HtmlWebpackPlugin({
                 template: "index.ejs",

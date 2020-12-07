@@ -4,10 +4,10 @@ services:
         image: mongo
         ports:
             - 27017:27017
-    redis:
-        image: redis
-        ports:
-            - 6379:6379
+    #    redis:
+    #        image: redis
+    #        ports:
+    #            - 6379:6379
     #    lint:
     #        image: lint
     #        command: npm run lint
@@ -31,8 +31,8 @@ services:
             - 7070:7070
         volumes:
             - ./packages:/app/packages
-        command: npm run test
+        command: npm run start
         depends_on:
             - db
-            - redis
+#            - redis
 #            - lint
