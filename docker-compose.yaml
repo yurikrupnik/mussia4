@@ -92,6 +92,7 @@ services:
             #            - DEST_PORT=8000
             #            - HOST=gateway1
             - NODE_ENV_DOCKER=true
+            - NODE_ENV=productionssssss
             #            - DATABASE_URL=mongodb://db/mussia4
             - DB_URL=@cluster0.zurzw.mongodb.net/
             - DB_PASSWORD=AXnEdzgKsyg8XVaN

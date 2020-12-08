@@ -26,7 +26,7 @@
   "scripts": {
     "start": "run-p start:client start:server",
     "start:server": "webpack --config=../../../webpack.config.server.js -w --color",
-    "start:client": "webpack serve --config=../../../webpack.config.client.js --color",
+    "start:client": "webpack serve --config=../../../webpack.config.client.js -w --color",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
     "test": "jest src --colors",
     "build": "run-p build:server build:client",
