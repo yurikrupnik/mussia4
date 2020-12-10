@@ -2,7 +2,7 @@
 import json from "../package.json";
 
 const port = Number(process.env.PORT) || json.config.port || 8080;
-console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 const isProd = process.env.NODE_ENV === "production";
 // const isProd = process.env.NODE_ENV === "production";
 const baseURL = "/api";
@@ -24,13 +24,13 @@ function handleDatabaseUrl() {
 }
 
 const databaseUrl = handleDatabaseUrl();
-console.log("databaseUrl", databaseUrl);
+// console.log("databaseUrl", databaseUrl);
+// // console.log("port", port);
+// console.log("isProd", isProd);
+// console.log("NODE_ENV", process.env.NODE_ENV);
+// console.log("process.env.PORT", process.env.PORT);
+// console.log("process.env.DB_PASSWORD", process.env.DB_PASSWORD);
 // console.log("port", port);
-console.log("isProd", isProd);
-console.log("NODE_ENV", process.env.NODE_ENV);
-console.log("process.env.PORT", process.env.PORT);
-console.log("process.env.DB_PASSWORD", process.env.DB_PASSWORD);
-console.log("port", port);
 
 // module.exports = {
 //     port,
