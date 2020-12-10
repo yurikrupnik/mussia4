@@ -3,7 +3,7 @@ import { StaticRouter } from "react-router-dom"; // matchPath
 import { renderToString } from "react-dom/server";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { ChunkExtractor } from "@loadable/server";
+// import { ChunkExtractor } from "@loadable/server";
 import React from "react";
 import path from "path";
 import { Routes, Theme } from "../types";
@@ -15,7 +15,8 @@ interface Props {
 
 const render = (App: React.FC<Props> | null, routes: Routes, fileLocation: string) => {
     const statsFile = path.join(fileLocation, "loadable-stats.json");
-    const extractor = new ChunkExtractor({ statsFile });
+    console.log("statsFile", statsFile);
+    // const extractor = new ChunkExtractor({ statsFile });
     const route = express.Router();
     route.get("/*", (req, response, next) => {
         console.log("At render req.url", req.url); // eslint-disable-line
@@ -48,29 +49,26 @@ const render = (App: React.FC<Props> | null, routes: Routes, fileLocation: strin
                     url: "",
                 };
                 const title = "my title";
-                // const html = renderToString((
-                //     <StaticRouter
-                //         location={req.url}
-                //         context={appData}
-                //     >
-                //         <App userAgent={req.headers['user-agent']} routes={routes} />
-                //     </StaticRouter>
-                // ));
                 const html = renderToString(
-                    extractor.collectChunks(
-                        <StaticRouter location={req.url} context={{}}>
-                            <App routes={routes} theme={{}} />
-                        </StaticRouter>
-                    )
+                    <StaticRouter location={req.url} context={{}}>
+                        <App theme={{}} routes={routes} />
+                    </StaticRouter>
                 );
-                const tags = extractor.getScriptTags();
+                // const html = renderToString(
+                //     extractor.collectChunks(
+                //         <StaticRouter location={req.url} context={{}}>
+                //             <App routes={routes} theme={{}} />
+                //         </StaticRouter>
+                //     )
+                // );
+                // const tags = extractor.getScriptTags();
                 console.log("html", html.length);
                 // const links = extractor.getLinkTags();
                 const state = {
                     title,
                     html,
                     // appData,
-                    tags,
+                    tags: "",
                     links: "",
                 };
                 console.log("state", state); // eslint-disable-line

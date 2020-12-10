@@ -1,4 +1,4 @@
-FROM gcr.io/puzzle-pzl/lerna AS builder
+FROM gcr.io/mussia4/lerna AS builder
 ARG port=8080
 ENV PORT=$port
 
@@ -11,7 +11,7 @@ RUN npm i
 RUN npm run postinstall
 RUN npm run build
 
-FROM node:12.10.0
+FROM node:12.10.0-alpine
 
 ARG port=8080
 ENV PORT=$port

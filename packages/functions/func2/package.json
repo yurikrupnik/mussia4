@@ -23,7 +23,7 @@
     "build:watch": "rollup --config=../../../rollup.config.functions.ts -w",
     "watch": "npm-watch fucntion",
     "fucntion": "functions-framework --target=$npm_package_name --port=$npm_package_config_port",
-    "start": "run-p build:watch watch",
+    "starts": "run-p build:watch watch",
     "prebuild": "rimraf dist",
     "lint": "eslint src --ext .ts,.tsx --color",
     "test": "jest src --colors",

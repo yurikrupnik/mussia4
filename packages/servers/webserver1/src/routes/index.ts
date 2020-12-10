@@ -6,7 +6,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 
 // import React from "react";
-// import Main from "./Main";
+import Main from "./Main";
 // import Profile from "./Profile";
 // import Error from "./Error";
 // import Header from './Header';
@@ -45,7 +45,7 @@ import Login from "./Login";
 
 const routes: Routes = [
     {
-        component: Dashboard,
+        component: Main,
         path: "/",
         key: "main",
         exact: true,
@@ -60,7 +60,7 @@ const routes: Routes = [
     {
         component: Login,
         path: "/",
-        key: "main",
+        key: "login",
         exact: true,
     },
     // {

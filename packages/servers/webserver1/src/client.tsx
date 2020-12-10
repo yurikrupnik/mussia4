@@ -28,6 +28,7 @@ const theme: Theme = {
     },
 };
 
+// console.log("isProd", isProd);
 if (!isProd) {
     render(
         <BrowserRouter>
