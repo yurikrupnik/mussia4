@@ -4,35 +4,39 @@ services:
         image: mongo
         ports:
             - 27017:27017
-    #    redis:
-    #        image: redis
-    #        ports:
-    #            - 6379:6379
-    #    lint:
-    #        image: lint
-    #        command: npm run lint
+    lint:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.dev
+        #        image: lint
+        container_name: lint
+        command: npm run lint
+    test:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.dev
+        container_name: test
+        command: npm run test
     devopment:
         #    image: roundtrip/rt-react
         build:
             context: .
             dockerfile: ./Dockerfile.dev
-        #            args:
-        #                - port=8000
         container_name: web
         environment:
-            #            - PORT=8000
             - NODE_ENV_DOCKER=true
             - DB_USER=yuri
-            - DATABASE_URL=mongodb://db/mussia4
+            - DB_URL=mongodb://db/mussia4
         ports:
             - 4000:4000
+            - 5001:5001
+            - 5000:5000
             - 4001:4001
             - 7000:7000
             - 7070:7070
         volumes:
-            - ./packages:/app/packages
+            - ./packages/servers/webserver1/src:/app/packages/servers/webserver1/src
+        #            - ./packages:/app/packages
         command: npm run start
         depends_on:
             - db
-#            - redis
-#            - lint

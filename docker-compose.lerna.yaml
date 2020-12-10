@@ -5,15 +5,4 @@ services:
         image: gcr.io/mussia4/lerna
         build:
             context: .
-        #      dockerfile: Dock
         container_name: lerna
-        deploy:
-            replicas: 0
-#  ds:
-#    image: yurikrupnik/mussia-ts-ds
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.non
-#    container_name: lerna
-#    deploy:
-#      replicas: 0

@@ -2,5 +2,6 @@ FROM gcr.io/mussia4/lerna AS builder
 
 COPY packages ./packages
 RUN npm run postinstall
+RUN npm run prepare:ejs
 
 RUN npm run bootstrap
