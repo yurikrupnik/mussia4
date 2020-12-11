@@ -56,7 +56,7 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
-            - run: lerna changed
+            - run: npx lerna changed
     #            - name: Install Dependencies
     #              run: npm ci
     #            - name: Test
