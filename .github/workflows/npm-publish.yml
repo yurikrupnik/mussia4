@@ -42,8 +42,9 @@ jobs:
         steps:
             - uses: actions/checkout@v2
               with:
-                  all_commits: true
-                  all_tags: true
+                  fetch-depth: "0"
+            #                  all_commits: true
+            #                  all_tags: true
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{secrets.node_version}}
@@ -59,6 +60,7 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
+            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
             - run: npx lerna changed
     #            - name: Install Dependencies
     #              run: npm ci
