@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.13 (2020-12-11)
+
+
+### Bug Fixes
+
+* upgrade mongodb from 3.6.2 to 3.6.3 ([1239bed](https://github.com/yurikrupnik/mussia4/commit/1239bed789f97409ccb8414d4782f50162b432c5))
+
+
+
+
+
 ## [1.0.12](http://bitbucket.org/krupnikyuri/puzzle-pzl/compare/func1@1.0.11...func1@1.0.12) (2020-11-13)
 
 **Note:** Version bump only for package func1
