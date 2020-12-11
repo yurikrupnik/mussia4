@@ -40,14 +40,14 @@ jobs:
               run: npm run lint -- --since
             - name: Build
               run: npm run build -- --since
-    lerna:
+    npm-publish:
         runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
         steps:
             - uses: actions/checkout@v2
               with:
                   fetch-depth: "0"
-            #                  all_commits: true
-            #                  all_tags: true
+            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{secrets.node_version}}
@@ -63,8 +63,9 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
-            - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-            - run: npx lerna changed
+            - run: npm run npm-publish
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.npm_token}}
     #            - name: Install Dependencies
     #              run: npm ci
     #            - name: Test
