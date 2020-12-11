@@ -1,13 +1,14 @@
 import passport from "passport";
 import { Request, Application } from "express";
 import { validatePassword } from "./crypt";
-import User from "../../api/users/model";
+import UserM from "../../api/users/model";
+import { IUser } from "../../types";
 
 const serialize = (user: any, done: any) => done(null, user._id);
 
-const deserialize = (_id: string, done: any) => User.findOne({ _id }, done);
+const deserialize = (_id: string, done: any) => UserM.findOne({ _id }, done);
 
-const checkValidUser = (user: any, done: any) => (valid: boolean) => {
+const checkValidUser = (user: IUser, done: any) => (valid: boolean) => {
     if (!valid) {
         done(null, false, { message: "invalid user", user }); // todo check it
     } else {
@@ -29,13 +30,13 @@ const checkUserByEmailAndPass = (req: Express.Request, email: string, password: 
 
 const localStrategyHandler = (req: Request, email: string, password: string, done: any) => {
     if (req.body.token) {
-        User.findOne({ token: req.body.token })
+        UserM.findOne({ token: req.body.token })
             .then((user) => {
                 done(null, user);
             })
             .catch(done);
     } else {
-        User.findOne({ email })
+        UserM.findOne({ email })
             // eslint-disable-next-line
             .then((user) => {
                 if (!user) {
@@ -50,13 +51,13 @@ const localStrategyHandler = (req: Request, email: string, password: string, don
 };
 
 const socialAppsRegisterCallback = (profile: any, done: any) => () =>
-    User.findOne({ id: profile.id })
+    UserM.findOne({ id: profile.id })
         .then((user) => {
             if (user) {
                 done(null, user);
             } else {
                 const { provider } = profile;
-                const newUser = new User({
+                const newUser = new UserM({
                     id: profile.id,
                     email: profile.email || "",
                     name: provider === "facebook" ? profile.displayName : profile.fullName,

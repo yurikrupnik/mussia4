@@ -1,9 +1,10 @@
 // import { Strategy } from 'passport-remember-me';
 // import crypto from 'crypto';
-import { serialize, deserialize } from './utils';
-import localStrategy from './local';
+import { PassportStatic } from "passport";
+import { serialize, deserialize } from "./utils";
+import localStrategy from "./local";
 
-export default (passport:any) => {
+export default (passport: PassportStatic) => {
     passport.serializeUser(serialize);
     passport.deserializeUser(deserialize);
     passport.use(localStrategy);
