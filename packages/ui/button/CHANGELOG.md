@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 9.0.6 (2020-12-11)
+
+
+### Bug Fixes
+
+* upgrade react from 16.13.1 to 16.14.0 ([c20a797](https://bitbucket.org/krupnikyuri/puzzle-pzl/commits/c20a797bf17a026cd687c37d30322120fbc72624))
+
+
+
+
+
 ## [9.0.5](https://bitbucket.org/krupnikyuri/puzzle-pzl/compare/@puzzle-mussia/button1@9.0.4...@puzzle-mussia/button1@9.0.5) (2020-11-13)
 
 **Note:** Version bump only for package @puzzle-mussia/button1

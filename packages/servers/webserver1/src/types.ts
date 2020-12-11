@@ -21,7 +21,7 @@ export type Theme = Partial<
 type CallbackFunction = () => AxiosPromise;
 type Route = RouteProps & { key: string; preFetch?: CallbackFunction };
 
-type Role = "agent" | "editor" | "designer" | "admin";
+type Role = "agent" | "editor" | "designer" | "admin" | "superman";
 
 export interface IUser {
     email: string;
