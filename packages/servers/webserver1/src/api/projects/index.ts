@@ -1,7 +1,7 @@
 import express, { Response, Request } from "express";
 // import { Model as Mode } from "mongoose";
 import { url } from "./config";
-import Model, { ProjectModel } from "./model";
+import Model from "./model";
 import { list } from "../methods";
 // import { sendEmail } from "../../services/email";
 // import { MongoModel } from "../../types";
