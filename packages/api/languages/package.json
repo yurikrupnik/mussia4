@@ -5,6 +5,7 @@
   "author": "yurikrupnik <krupnik.yuri@gmail.com>",
   "homepage": "https://github.com/yurikrupnik/mussia4/tree/master/packages/languages#readme",
   "license": "ISC",
+  "private": true,
   "files": [
     "dist"
   ],
@@ -61,5 +62,6 @@
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
-  }
+  },
+  "gitHead": "18a7c64d1e2ec5ef2dc542215fbbac1fd8c423b0"
 }
