@@ -66,6 +66,7 @@ jobs:
                       ${{ runner.os }}-
             - run: git config --global user.email krupnik.yuri@gmail.com
             - run: git config --global user.name yurikrupnik
+            - run: npm whoami
             - run: npm run npm-publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
