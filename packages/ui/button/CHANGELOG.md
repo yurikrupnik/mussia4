@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.7](https://bitbucket.org/krupnikyuri/puzzle-pzl/compare/@puzzle-mussia/button1@9.0.6...@puzzle-mussia/button1@9.0.7) (2020-12-18)
+
+**Note:** Version bump only for package @puzzle-mussia/button1
+
+
+
+
+
 ## 9.0.6 (2020-12-11)
 
 
