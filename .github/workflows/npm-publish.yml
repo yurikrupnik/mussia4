@@ -69,7 +69,7 @@ jobs:
             - run: npm whoami
             - run: npm run npm-publish
               env:
-                  NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+                  NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     #            - name: Install Dependencies
     #              run: npm ci
     #            - name: Test
