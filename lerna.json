@@ -5,6 +5,7 @@
     "packages/generators/*",
     "packages/servers/*",
     "packages/functions/*",
+    "packages/api/*",
     "packages/apps/*"
   ],
   "version": "independent"

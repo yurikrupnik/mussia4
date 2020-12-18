@@ -1,0 +1,65 @@
+{
+  "name": "languages",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "yurikrupnik <krupnik.yuri@gmail.com>",
+  "homepage": "https://github.com/yurikrupnik/mussia4/tree/master/packages/languages#readme",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "config": {
+    "port": 3000,
+    "modulePath": "/packages/api/languages",
+    "docker_image_name": "languages",
+    "docker_image_org_name": "gcr.io",
+    "project": "mussia4",
+    "service": "languages",
+    "db": "ds215759.mlab.com:15759/client-app-users"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurikrupnik/mussia4.git",
+    "directory": "packages/api/languages"
+  },
+  "scripts": {
+    "start": "webpack --config=../../../webpack.config.server.js -w --color",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
+    "test": "jest src --colors",
+    "build": "webpack --config=../../../webpack.config.server.js --color",
+    "e2e": "jest e2e --colors",
+    "docker:build": "docker build -t $npm_package_config_docker_image_name/$npm_package_config_docker_image_name  --force-rm --build-arg modulePath=$npm_package_config_modulePath --build-arg distFolder=$npm_package_files_0",
+    "docker:run": "docker run -d -p $npm_package_config_port:$npm_package_config_port -e PORT=$npm_package_config_port $npm_package_config_docker_image_name/$npm_package_config_docker_image_name",
+    "docker:test": "npm run e2e",
+    "docker:stop": "docker stop $(docker ps -q)",
+    "docker:local": "run-s docker:build docker:run docker:test docker:stop",
+    "deploy": "bash ../../../scripts/deploy-to-cloud-run.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/yurikrupnik/mussia4/issues"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-favicon": "^2.1.0",
+    "koa-logger": "^3.2.1",
+    "koa-render-view": "^1.0.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.11.7"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/koa-router": "^7.4.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
+  }
+}

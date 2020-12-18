@@ -1,10 +1,9 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
-const generateHash = (password:string) => bcrypt.hash(password, bcrypt.genSaltSync(10));
+const generateHash = (password: string) => bcrypt.hash(password, bcrypt.genSaltSync(10));
 
-const validatePassword = (password:string, hash:string) => bcrypt.compare(password, hash);
+const generateHashSync = (password: string) => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-export {
-    generateHash,
-    validatePassword
-};
+const validatePassword = (password: string, hash: string) => bcrypt.compare(password, hash);
+
+export { generateHash, validatePassword, generateHashSync };

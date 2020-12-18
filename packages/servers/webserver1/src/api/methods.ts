@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
+// import omit from "lodash/omit";
 import mongoose from "mongoose";
-// import { IUser } from "../types";
+// import { UserDocument } from "./users/model";
+// import { UserModel, UserDocument, UserFront } from "./users/model";
+// import { ProjectFront, ProjectDocument, ProjectModel } from "./projects/model";
+// const route = express.Router();
 
 const responseId = (req: Request, res: Response) => {
     const { id } = req.params;
@@ -14,27 +18,52 @@ const handleError = (res: Response) => {
     return (err: Error) => res.status(statusCode).send(err);
 };
 
-const respondWithResult = (res: Response) => (entity: any) => res.status(200).json(entity);
+// const respondWithResult = (res: Response) => <T>(entity: T) => res.status(200).json(entity);
 
-// todo check statics
-const schema = (Model: mongoose.Model<never>) => (req: Request, res: Response) =>
-    res.status(200).json(Model.schema.statics);
+function respondWithResult<T>(res: Response) {
+    return (entity: T) => res.status(200).json(entity);
+}
 
-// type dmMo = IUser | {};
+// export type CustomRequest<
+//     A,
+//     B extends Request["body"],
+//     C extends Request["params"]
+//     // D extends string[]
+// > = Request & {
+//     query: Partial<A> & { projections?: keyof A[] };
+//     body: B;
+//     params: C;
+//     // projections: string[];
+// };
 
-const list = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
-    Model.find(req.query).then(respondWithResult(res)).catch(handleError(res));
+// interface BackemdApi<T> {
+//     list(model: any): void;
+// }
 
-const find = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
-    Model.find({ _id: req.params.id }).then(respondWithResult(res)).catch(handleError(res));
+const list = <T extends mongoose.Model<any>>(Model: T) => (req: Request, res: Response) => {
+    // console.log("req.query", req.query); // got alsmost dynamic query
+    const { projections } = req.query;
+    // console.log("typeof projections;", typeof projections);
+    // console.log("projection", projection);
+    Model.find(req.query, projections, {})
+        .then(respondWithResult(res))
+        // .then((entity) => {
+        //     next(entity);
+        // entity[0]
+        // res.status(200).json(entity);
+        // })
+        .catch(handleError(res));
+};
+
+const find = (Model: any) => (req: Request, res: Response) => {
+    Model.findOne({ _id: req.params.id }).then(respondWithResult(res)).catch(handleError(res));
+};
 
 const removeOne = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
-    Model.findOneAndRemove({ _id: req.params.id }).then(responseId(req, res)).catch(handleError(res));
+    Model.findByIdAndDelete(req.params.id).then(responseId(req, res)).catch(handleError(res));
 
-const create = (Model: mongoose.Model<any>) => (req: Request, res: Response) => {
-    const user = new Model(req.body);
-    return user.save().then(respondWithResult(res)).catch(handleError(res));
-};
+const create = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
+    Model.create(req.body).then(respondWithResult(res)).catch(handleError(res));
 
 const update = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
     Model.findOneAndUpdate(
@@ -44,9 +73,10 @@ const update = (Model: mongoose.Model<any>) => (req: Request, res: Response) =>
         req.body,
         {
             new: true,
+            useFindAndModify: false,
         }
     )
         .then(respondWithResult(res))
         .catch(handleError(res));
 
-export { schema, list, find, removeOne, create, update };
+export { list, find, update, create, removeOne };

@@ -12,7 +12,7 @@ import auth from "./auth";
 // import currencies from './currencies';
 // import sets from './sets';
 import users from "./users";
-// import projects from './projects';
+import projects from "./projects";
 // import localization from './localization';
 // import data from './data';
 // import clients from './clients';
@@ -23,7 +23,7 @@ import users from "./users";
 // const cache = redisCache();
 const route = express.Router();
 
-route.use("/api", [auth, users]);
+route.use("/api", [auth, users, projects]);
 // when redis is in production todo>
 // todo can add cache cache.route() middle before array
 // route.use('/api', [

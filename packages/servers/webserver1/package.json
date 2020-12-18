@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "run-p start:client start:server",
+    "tsc": "tsc -noEmit",
     "start:server": "webpack --config=../../../webpack.config.server.js -w --color",
     "start:client": "webpack serve --config=../../../webpack.config.client.js -w --color",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --color",
