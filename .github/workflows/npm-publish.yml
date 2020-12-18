@@ -68,7 +68,7 @@ jobs:
             - run: git config --global user.name yurikrupnik
             - run: npm run npm-publish
               env:
-                  NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
     #            - name: Install Dependencies
     #              run: npm ci
     #            - name: Test
@@ -132,48 +132,47 @@ jobs:
     #            - Second Change
     #          draft: false
     #          prerelease: false
-
-    publish-npm:
-        runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main'
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12.10.0
-                  registry-url: https://registry.npmjs.org/
-            #      - run: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
-            #      - uses: nelonoel/branch-name@v1
-            - run: npm ci
-            #      - run: npx lerna changed
-            - run: npm run build
-            #      - run: echo ${BRANCH_NAME}
-            - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
-              #      - run: npm ci
-              #      - uses: actions/download-artifact@v2
-              #        with:
-              #          name: my-artifact
-              #      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
-              #      - run: npm whoami
-              #            - run: npm run npm-publish
-              #      - run: npx lerna changed
-              #      - run: npx lerna publish patch  --yes --no-push --conventional-commits
-              #      - run: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
-              #      - run: git add -u
-              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
-              #      - run: git push origin --follow-tags
-              #      - run: npm version patch
-              #      - run: git push origin --follow-tags
-
-              #      - run: git add -u
-              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
-              #      - run: git push origin --follow-tags
-              #      - run: npm run npm-publish
-              #      - run: npx lerna publish prepatch --pre-dist-tag=nextd --yes --conventional-commits
-              #      - run: npx lerna publish patch --yes --conventional-commits
-              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+#    publish-npm:
+#        runs-on: ubuntu-latest
+#        if: github.ref == 'refs/heads/main'
+#        steps:
+#            - uses: actions/checkout@v2
+#            - uses: actions/setup-node@v1
+#              with:
+#                  node-version: 12.10.0
+#                  registry-url: https://registry.npmjs.org/
+#            #      - run: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+#            #      - uses: nelonoel/branch-name@v1
+#            - run: npm ci
+#            #      - run: npx lerna changed
+#            - run: npm run build
+#            #      - run: echo ${BRANCH_NAME}
+#            - run: git config --global user.email krupnik.yuri@gmail.com && git config --global user.name yurikrupnik
+#              #      - run: npm ci
+#              #      - uses: actions/download-artifact@v2
+#              #        with:
+#              #          name: my-artifact
+#              #      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+#              #      - run: npm whoami
+#              #            - run: npm run npm-publish
+#              #      - run: npx lerna changed
+#              #      - run: npx lerna publish patch  --yes --no-push --conventional-commits
+#              #      - run: npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit
+#              #      - run: git add -u
+#              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
+#              #      - run: git push origin --follow-tags
+#              #      - run: npm version patch
+#              #      - run: git push origin --follow-tags
+#
+#              #      - run: git add -u
+#              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
+#              #      - run: git push origin --follow-tags
+#              #      - run: npm run npm-publish
+#              #      - run: npx lerna publish prepatch --pre-dist-tag=nextd --yes --conventional-commits
+#              #      - run: npx lerna publish patch --yes --conventional-commits
+#              #      - run: git diff --quiet && git diff --staged --quiet || git commit -am "package-lock.json update"
+#              env:
+#                  NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 #  publish-gpr:s
 #    needs: build
 #    runs-on: ubuntu-latest
