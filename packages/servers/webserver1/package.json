@@ -41,7 +41,7 @@
     "docker:stop": "docker stop $(docker ps -q)",
     "docker:local": "run-s docker:build docker:run docker:test docker:stop",
     "predeploy": "npm run build",
-    "deploy": "gcloud app deploy ./dist/app.yml"
+    "deploya": "gcloud app deploy ./dist/app.yml"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia4/issues"

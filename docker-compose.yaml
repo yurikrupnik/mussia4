@@ -57,7 +57,7 @@ services:
             args:
                 - modulePath=/packages/api/languages
                 #        - port=7000
-                - NODE_ENV_DOCKER=true
+                #                - NODE_ENV_DOCKER=true
                 - DATABASE_URL=mongodb://db/service1-db
         #        - HOST=0.0.0.0
         container_name: languages

@@ -28,6 +28,7 @@
     "link": "lerna run --stream link",
     "unlink": "lerna run --stream unlink",
     "tsc": "lerna run --stream tsc",
+    "makes": "make run-local",
     "pre-push": "node scripts/hooks/pre-push.js",
     "pre-commit": "node scripts/hooks/pre-commit.js",
     "prepare-commit-msg": "node scripts/hooks/prepare-commit-msg.js"

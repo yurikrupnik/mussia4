@@ -87,23 +87,23 @@ const mock: Array<Language> = [
 
 export default Model;
 
-Model.find({}).then((res) => {
-    // console.log("res", res);
-    if (!res.length) {
-        // Model.create({ direction: "ds", code: "ds", primary: true, name: "a", image: "s" });
-        Model.insertMany(mock);
-        // Model.create(mock[0]);
-        // return Model.insertMany([
-        //     {
-        //         primary: true,
-        //         // _id: "ds",
-        //         code: "ro",
-        //         name: " sd",
-        //         direction: "ds",
-        //         image: "ds",
-        //     },
-        // ]);
-    }
-});
+// Model.find({}).then((res) => {
+//     // console.log("res", res);
+//     if (!res.length) {
+//         // Model.create({ direction: "ds", code: "ds", primary: true, name: "a", image: "s" });
+//         Model.insertMany(mock);
+//         // Model.create(mock[0]);
+//         // return Model.insertMany([
+//         //     {
+//         //         primary: true,
+//         //         // _id: "ds",
+//         //         code: "ro",
+//         //         name: " sd",
+//         //         direction: "ds",
+//         //         image: "ds",
+//         //     },
+//         // ]);
+//     }
+// });
 
 export { LanguagesSchema, mock, Language };

@@ -16,7 +16,7 @@
     "docker_image_org_name": "gcr.io",
     "project": "mussia4",
     "service": "languages",
-    "db": "ds215759.mlab.com:15759/client-app-users"
+    "db": "ds215759.mlab.com:15759/clients-app-users"
   },
   "repository": {
     "type": "git",
