@@ -40,6 +40,10 @@ jobs:
               run: npm run lint -- --since
             - name: Build
               run: npm run build -- --since
+            - uses: actions-hub/gcloud@master
+              env:
+                  PROJECT_ID: mussia4
+                  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
 #    npm-publish:
 #        runs-on: ubuntu-latest
 #        if: github.ref == 'refs/heads/main'

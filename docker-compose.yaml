@@ -58,14 +58,14 @@ services:
                 - modulePath=/packages/api/languages
                 #        - port=7000
                 #                - NODE_ENV_DOCKER=true
-                - DATABASE_URL=mongodb://db/service1-db
+        #                - DATABASE_URL=mongodb://db/service1-db
         #        - HOST=0.0.0.0
         container_name: languages
         environment:
             #      - PORT=7000
-            - MODULE_PATH=packages/api/languages
+            #            - MODULE_PATH=packages/api/languages
             - NODE_ENV_DOCKER=true
-            - DATABASE_URL=mongodb://db/service1-db
+            - DB_URL=mongodb://db/service1-db
         ports:
             - 7000:8080
         #      - 8000:8000

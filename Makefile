@@ -12,3 +12,11 @@ create-tf-backed-bucket:
 push:
 	docker tag $(LOCAL_TAG) $(REMOTE_TAG)
 	docker push $(REMOTE_TAG)
+
+
+
+deploy-languages:
+	gcloud run deploy languages \
+      --image gcr.io/mussia4/languages \
+      --platform managed \
+      --region europe-west1 \
