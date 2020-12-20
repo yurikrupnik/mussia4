@@ -20,3 +20,4 @@ deploy-languages:
       --image gcr.io/mussia4/languages \
       --platform managed \
       --region europe-west1 \
+      --project $PROJECT_ID
