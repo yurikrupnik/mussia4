@@ -34,16 +34,18 @@ jobs:
                       ${{ runner.os }}-
             - name: Install Dependencies
               run: npm ci
-            - name: Test
-              run: npm run test -- --since
             - name: Eslint
               run: npm run lint -- --since
+            - name: Test
+              run: npm run test -- --since
             - name: Build
               run: npm run build -- --since
             - uses: actions-hub/gcloud@master
               env:
                   PROJECT_ID: mussia4
                   APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+            - name: Deploy
+              run: make deploy-languages
 #    npm-publish:
 #        runs-on: ubuntu-latest
 #        if: github.ref == 'refs/heads/main'
