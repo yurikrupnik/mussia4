@@ -48,7 +48,7 @@ services:
     #        container_name: functions
     #        ports:
     #            - 3332:3332
-    #            - 3333:3333
+    #            - 3333:3333d
     #        command: npm run fucntion
     languages:
         #        image: gcr.io/mussia4/languages
