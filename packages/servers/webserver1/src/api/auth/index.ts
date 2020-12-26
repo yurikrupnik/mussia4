@@ -24,7 +24,22 @@ const handleHash = (user: any) => (hash: string) => {
     user.hashPassword = hash; // eslint-disable-line no-param-reassign
     return user;
 };
+// router.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
 
+// @desc    Google auth callback
+// @route   GET /auth/google/callback
+// router.get(googleCallback, passport.authenticate("google", { failureRedirect: "/" }), (req, res) => {
+//     res.redirect("/dashboard");
+// });
+// router.get(google, passport.authenticate("google", { scope: ["profile"] }));
+// router.get(google, (req, res) => {
+//     res.status(200).json("ok");
+// });
+//
+// router.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), (req, res) => {
+//     // Successful authentication, redirect home.
+//     res.redirect("/");
+// });
 router.post(register, (req: express.Request, res: express.Response) => {
     const { email, password, username } = req.body;
     UsersModel.findOne({ email }).then((user) => {

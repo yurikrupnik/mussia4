@@ -1,22 +1,23 @@
 version: "3"
+
 services:
     db:
         image: mongo
         ports:
             - 27017:27017
-    lint:
-        build:
-            context: .
-            dockerfile: ./Dockerfile.dev
-        #        image: lint
-        container_name: lint
-        command: npm run lint
-    test:
-        build:
-            context: .
-            dockerfile: ./Dockerfile.dev
-        container_name: test
-        command: npm run test
+    #    lint:
+    #        build:
+    #            context: .
+    #            dockerfile: ./Dockerfile.dev
+    #        #        image: lint
+    #        container_name: lint
+    #        command: npm run lint
+    #    test:
+    #        build:
+    #            context: .
+    #            dockerfile: ./Dockerfile.dev
+    #        container_name: test
+    #        command: npm run test
     devopment:
         #    image: roundtrip/rt-react
         build:
@@ -27,6 +28,9 @@ services:
             - NODE_ENV_DOCKER=true
             - DB_USER=yuri
             - DB_URL=mongodb://db/mussia4
+        #            - GOOGLE_CLIENT_SECRET=$(echo $GOOGLE_CLIENT_SECRET)
+        #            - GOOGLE_CLIENT_SECRET=KyxjO9p4yA4xhz8UVpIxyu82
+        #            - GOOGLE_CLIENT_SECRET=gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET
         ports:
             - 4000:4000
             - 5001:5001

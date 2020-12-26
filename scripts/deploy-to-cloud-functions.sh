@@ -9,5 +9,5 @@ gcloud functions deploy $npm_package_name \
   --allow-unauthenticated \
   --entry-point=$npm_package_name \
   --source=dist \
-  --stage-bucket ariss-functions \
+  --stage-bucket ariss-functions1 \
   --memory=256MB

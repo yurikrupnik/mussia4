@@ -3,31 +3,13 @@
 import { PassportStatic } from "passport";
 import { serialize, deserialize } from "./utils";
 import localStrategy from "./local";
+import googleStrategy from "./google";
+// import jira from "./jira";
 
 export default (passport: PassportStatic) => {
     passport.serializeUser(serialize);
     passport.deserializeUser(deserialize);
     passport.use(localStrategy);
-
-    // passport.use(
-    //     new Strategy(
-    //         (token, done) => {
-    //             console.log('Strategy token', token);
-    //             // Token.consume(token, (err, user) => {
-    //             //     if (err) { return done(err); }
-    //             //     if (!user) { return done(null, false); }
-    //             //     return done(null, user);
-    //             // });
-    //             done(null, null, {});
-    //         },
-    //         (user, done) => {
-    //             const token = crypto.randomBytes(64).toString('hex'); // eslint-disable-line
-    //             // Token.save(token, { userId: user.id }, (err) => {
-    //             //     if (err) { return done(err); }
-    //             //     return done(null, token);
-    //             // });
-    //             done(null, null, {});
-    //         }
-    //     )
-    // );
+    passport.use(googleStrategy);
+    // passport.use(jira);
 };

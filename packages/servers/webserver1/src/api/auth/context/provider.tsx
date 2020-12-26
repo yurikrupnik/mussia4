@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom";
 // import PropTypes from 'prop-types';
 import Cookie from "js-cookie";
@@ -18,7 +18,7 @@ const localStore = {
         return localStorage.removeItem(name);
     },
 };
-const clients = ["localhost", "ynet-tours", "nofshon", "amadeus"];
+// const clients = ["localhost", "ynet-tours", "nofshon", "amadeus"];
 
 interface Props {
     children: React.FC;
@@ -33,36 +33,36 @@ const AuthProvider: React.FC<Props> = (props) => {
     const [user, setUser] = useState(null);
 
     // console.log('user', user);
-    const toggleUserRole = useCallback(() => {
-        if (user) {
-            // userApi
-            //     .put({
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            // _id: user._id,
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            // role: user.role === "admin" ? "client" : "admin",
-            // })
-            // .then(setUser);
-        }
-    }, [user]);
+    // const toggleUserRole = useCallback(() => {
+    //     if (user) {
+    //         // userApi
+    //         //     .put({
+    //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //         // @ts-ignore
+    //         // _id: user._id,
+    //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //         // @ts-ignore
+    //         // role: user.role === "admin" ? "client" : "admin",
+    //         // })
+    //         // .then(setUser);
+    //     }
+    // }, [user]);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const setClientDomain = useCallback(
-        // (e) => setUser({ ...user, domain: e.target.value }),
-        [user]
-    );
-
-    const isAdmin = useMemo(() => {
-        if (!user) {
-            return false;
-        }
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return user.role === "admin";
-    }, [user]);
+    // const setClientDomain = useCallback(
+    //     // (e) => setUser({ ...user, domain: e.target.value }),
+    //     [user]
+    // );
+    //
+    // const isAdmin = useMemo(() => {
+    //     if (!user) {
+    //         return false;
+    //     }
+    //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //     // @ts-ignore
+    //     return user.role === "admin";
+    // }, [user]);
 
     const register = useCallback(
         (body) =>
@@ -147,26 +147,26 @@ const AuthProvider: React.FC<Props> = (props) => {
         }
     }, [session]);
 
-    const isLoggedIn = useMemo(() => Boolean(session), [session]);
-    const forgotPassword = useCallback((body) => api.forgotPassword(body), []);
-    const resetPassword = useCallback((body) => api.resetPassword(body), []);
+    // const isLoggedIn = useMemo(() => Boolean(session), [session]);
+    // const forgotPassword = useCallback((body) => api.forgotPassword(body), []);
+    // const resetPassword = useCallback((body) => api.resetPassword(body), []);
     return (
         <Context.Provider
             value={{
-                setUser,
-                isLoggedIn,
-                session,
+                // setUser,
+                // isLoggedIn,
+                // session,
                 logout,
                 login,
                 register,
-                setClientDomain,
-                toggleUserRole,
-                clients,
-                user,
-                isAdmin,
-                localStore,
-                forgotPassword,
-                resetPassword,
+                // setClientDomain,
+                // toggleUserRole,
+                // clients,
+                // user,
+                // isAdmin,
+                // localStore,
+                // forgotPassword,
+                // resetPassword,
             }}
         >
             {children}

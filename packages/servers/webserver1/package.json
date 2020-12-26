@@ -41,7 +41,7 @@
     "docker:stop": "docker stop $(docker ps -q)",
     "docker:local": "run-s docker:build docker:run docker:test docker:stop",
     "predeploy": "npm run build",
-    "deploya": "gcloud app deploy ./dist/app.yml"
+    "deploy": "gcloud app deploy ./dist/app.yml"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia4/issues"
@@ -70,6 +70,7 @@
     "faker": "^4.1.0",
     "firebase": "^7.22.0",
     "formik": "^2.2.5",
+    "googleapis": "^66.0.0",
     "helmet": "^3.22.0",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
@@ -79,6 +80,9 @@
     "mongoose-autopopulate": "^0.12.2",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
+    "passport-bitbucket-oauth2": "^0.1.2",
+    "passport-bitbucket-oauth20": "^1.1.0",
+    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-remember-me": "0.0.1",
     "postmark": "^2.6.0",
@@ -115,6 +119,7 @@
     "@types/mongoose": "^5.7.21",
     "@types/morgan": "^1.9.0",
     "@types/passport": "^1.0.3",
+    "@types/passport-google-oauth20": "^2.0.5",
     "@types/passport-local": "^1.0.33",
     "@types/react-csv": "^1.1.1",
     "@types/react-dom": "^16.9.8",

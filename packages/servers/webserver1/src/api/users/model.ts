@@ -27,11 +27,13 @@ type UserFront = {
     image: string;
 
     firstName: string;
+    id?: string;
     lastName?: string;
     fullName?: boolean;
 
     isActive?: boolean;
     creditCardNumber?: string;
+    provider: "local" | "google";
 };
 
 type User = Pick<SchemaTimestampsConfig, SchemaFilter> & UserFront;
@@ -70,6 +72,17 @@ const userSchemaObj: Record<keyof Omit<User, SchemaFilter | "fullName">, SchemaT
         //     return null;
         // },
     },
+    provider: {
+        type: String,
+        enum: ["local", "google"],
+        default: "local",
+    },
+    id: {
+        type: String,
+        required() {
+            return this.provider !== "local";
+        },
+    },
     email: {
         type: String,
         trim: true,
@@ -86,7 +99,11 @@ const userSchemaObj: Record<keyof Omit<User, SchemaFilter | "fullName">, SchemaT
     },
     password: {
         type: String,
-        required: true,
+        required() {
+            return this.provider === "local";
+        },
+        // required: true,
+        // required: function() [{ return this.a === 'test'; }, 'YOUR CUSTOME MSG HERE']
         set: generateHashSync,
     },
     role: {
@@ -96,7 +113,7 @@ const userSchemaObj: Record<keyof Omit<User, SchemaFilter | "fullName">, SchemaT
     },
     image: {
         type: String,
-        default: "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
+        default: "",
     },
     firstName: {
         type: String,
@@ -163,6 +180,7 @@ const mock: User[] = [
         image: "https://restcountries.eu/data/isr.svg",
         firstName: "aris 1",
         creditCardNumber: "8585 8585 8585 8588",
+        provider: "local",
     },
     {
         isActive: true,
@@ -172,6 +190,7 @@ const mock: User[] = [
         role: "admin",
         image: "https://restcountries.eu/data/isr.svg",
         firstName: "aris 1",
+        provider: "local",
     },
     {
         isActive: true,
@@ -181,6 +200,7 @@ const mock: User[] = [
         role: "admin",
         image: "https://restcountries.eu/data/isr.svg",
         firstName: "aris",
+        provider: "local",
     },
 ];
 
@@ -190,40 +210,6 @@ const mock: User[] = [
 //     Model.findWithShit(res._id);
 // });
 
-Model.find({}).then(async (res) => {
-    if (!res.length) {
-        // const doc = await Model.create(mock[0]);
-        // doc.createdAt; // 2020-07-06T20:36:59.414Z
-        // doc.updatedAt; // 2020-07-06T20:36:59.414Z
-        // Model.create({
-        //     email: "s@s.com",
-        //     password: "sd",
-        //     firstName: "sd",
-        //     lastName: "sd",
-        //     token: "s",
-        //     role: "s",
-        //     image: "sd",
-        //     // isActive: true,
-        // });
-        //     .then((r) => {
-        //     // r.fullName;
-        // });
-        Model.insertMany(mock);
-        // Model.create(mock[0]);
-        // return Model.insertMany([
-        //     {
-        //         // primary: true,
-        //         // // _id: "ds",
-        //         // code: "ro",
-        //         // name: " sd",
-        //         // direction: "ds",
-        //         // image: "ds",
-        //     },
-        // ]);
-    }
-    return false;
-});
-
 export default Model;
 
-export { User, UserDocument, UserModel, UserFront };
+export { User, UserDocument, UserModel, UserFront, mock };

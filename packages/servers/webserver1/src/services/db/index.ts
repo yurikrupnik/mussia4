@@ -1,7 +1,18 @@
 import mongoose from "mongoose";
 import session from "express-session";
 import connect from "connect-mongo";
+import Users, { mock } from "../../api/users/model";
 
+function createDbMock() {
+    // create "demo" user data
+    Users.find().then((res) => {
+        if (!res.length) {
+            Users.insertMany(mock);
+        }
+    });
+}
+
+createDbMock();
 export default (url: string) => {
     mongoose.connect(url, {
         useNewUrlParser: true,

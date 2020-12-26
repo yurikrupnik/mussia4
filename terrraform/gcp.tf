@@ -1,30 +1,31 @@
 provider "google" {
   credentials = file("terraform-sa-key.json")
-  project = "mussia4"
+  project = "mussia4-299720"
   region = "europe-west1"
   zone = "europe-west3-b"
 }
 
-//resource "google_compute_network" "vpc_network" {
-//  name = "terraform-network"
-//}
-//
-//resource "google_compute_instance" "vm_instance" {
-//  name         = "terraform-instance"
-//  machine_type = "f1-micro"
-//
-//  boot_disk {
-//    initialize_params {
-//      image = "debian-cloud/debian-9"
-//    }
-//  }
-//
-//  network_interface {
-//    network = google_compute_network.vpc_network.name
-//    access_config {
-//    }
-//  }
-//}
+
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
+}
+
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+}
 
 
 resource "google_storage_bucket" "demo-bucket" {
@@ -40,7 +41,7 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = "gcr.io/mussia4/languages"
+        image = "gcr.io/mussia4-299720/languages"
         env {
           name = "DB_URL"
           value = "@cluster0.zurzw.mongodb.net/"
@@ -77,8 +78,8 @@ resource "google_cloud_run_service" "default" {
 //  description = "first function vi aterraform"
 //  runtime = "node12"
 //  available_memory_mb = 128
-//  source_archive_bucket = google_storage_bucket.bucket.name
-//  source_archive_object = google_storage_bucket_object.archive.name
+////  source_archive_bucket = google_storage_bucket.bucket.name
+////  source_archive_object = google_storage_bucket_object.archive.name
 //  trigger_http = true
 //  timeout = 60
 //  entry_point = "helloWorld"

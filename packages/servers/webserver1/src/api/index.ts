@@ -1,5 +1,6 @@
 import express from "express";
 // import redisCache from 'express-redis-cache';
+// import passport from "passport";
 import auth from "./auth";
 // import props from './props';
 // import onboarding from './onboarding';
@@ -13,6 +14,8 @@ import auth from "./auth";
 // import sets from './sets';
 import users from "./users";
 import projects from "./projects";
+// import { google, googleCallback } from "./auth/config";
+// import router from "./auth";
 // import localization from './localization';
 // import data from './data';
 // import clients from './clients';
@@ -23,6 +26,10 @@ import projects from "./projects";
 // const cache = redisCache();
 const route = express.Router();
 
+// route.get(google, passport.authenticate("google", { scope: ["profile", "email"] }));
+// route.get(googleCallback, passport.authenticate("google", { failureRedirect: "/" }), (req, res) => {
+//     res.redirect("/dashboard");
+// });
 route.use("/api", [auth, users, projects]);
 // when redis is in production todo>
 // todo can add cache cache.route() middle before array

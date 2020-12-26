@@ -1,14 +1,13 @@
 import passport from "passport";
 import { Request, Application } from "express";
 import { validatePassword } from "./crypt";
-import UserM from "../../api/users/model";
-import { IUser } from "../../types";
+import UserM, { User } from "../../api/users/model";
 
 const serialize = (user: any, done: any) => done(null, user._id);
 
 const deserialize = (_id: string, done: any) => UserM.findOne({ _id }, done);
 
-const checkValidUser = (user: IUser, done: any) => (valid: boolean) => {
+const checkValidUser = (user: User, done: any) => (valid: boolean) => {
     if (!valid) {
         done(null, false, { message: "invalid user", user }); // todo check it
     } else {
@@ -20,11 +19,11 @@ const checkValidUser = (user: IUser, done: any) => (valid: boolean) => {
 const checkUserByEmailAndPass = (req: Express.Request, email: string, password: string, done: any) => (user: any) => {
     if (!user) {
         done("error here", null);
-        // done(new Error({ message: 'second custom error try' }), null, {
-        //     message: 'second custom error try'
+        // done(new Error("second custom error try"), null, {
+        //      message: "second custom error try1111",
         // });
     } else {
-        return validatePassword(password, user.hashPassword).then(checkValidUser(user, done));
+        return validatePassword(password, user.password).then(checkValidUser(user, done));
     }
 };
 
@@ -50,7 +49,7 @@ const localStrategyHandler = (req: Request, email: string, password: string, don
     }
 };
 
-const socialAppsRegisterCallback = (profile: any, done: any) => () =>
+const socialAppsRegisterCallback = (profile: any, token: string, refreshTocken: string, done: any) => () => {
     UserM.findOne({ id: profile.id })
         .then((user) => {
             if (user) {
@@ -59,26 +58,37 @@ const socialAppsRegisterCallback = (profile: any, done: any) => () =>
                 const { provider } = profile;
                 const newUser = new UserM({
                     id: profile.id,
-                    email: profile.email || "",
-                    name: provider === "facebook" ? profile.displayName : profile.fullName,
+                    // password: "asd",
+                    email: profile.emails[0].value,
+                    image: profile.photos[0].value,
+                    provider,
+                    token,
+                    // name: provider === "facebook" ? profile.displayName : profile.fullName,
+                    // firstName: provider.name.givenName,
+                    firstName: profile.name.givenName,
+                    // lastName: provider.name.familyName,
+                    // firstName: profile.name.givenName,
+                    lastName: profile.name.familyName,
+                    // lastName: "aris",
                 });
                 newUser.save(done);
             }
         })
         .catch(done);
+};
 
 const socialNetworkStrategy = (token: string, refreshTocken: any, profile: any, done: any) =>
-    process.nextTick(socialAppsRegisterCallback(profile, done));
+    process.nextTick(socialAppsRegisterCallback(profile, token, refreshTocken, done));
 
 const setSocialAuth = (provider: string) =>
     passport.authenticate(provider, {
-        successRedirect: "/",
-        failureRedirect: "/",
-        scope: ["email"],
+        successRedirect: "/dashboard",
+        failureRedirect: "/login",
+        scope: ["email", "profile"],
     }); // handling fail with router
 
 const createSocialNetworkRoutes = (app: Application) => {
-    const socialNetworks = ["facebook"];
+    const socialNetworks = ["google", "bitbucket"];
     socialNetworks.forEach((provider) => {
         // register middlewares
         app.get(`/auth/${provider}`, setSocialAuth(provider));

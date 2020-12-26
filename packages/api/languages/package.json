@@ -14,7 +14,7 @@
     "modulePath": "/packages/api/languages",
     "docker_image_name": "languages",
     "docker_image_org_name": "gcr.io",
-    "project": "mussia4",
+    "project": "mussia4-299720",
     "service": "languages",
     "db": "ds215759.mlab.com:15759/clientfs-app-users"
   },
@@ -34,7 +34,7 @@
     "docker:test": "npm run e2e",
     "docker:stop": "docker stop $(docker ps -q)",
     "docker:local": "run-s docker:build docker:run docker:test docker:stop",
-    "deploy": "bash ../../../scripts/deploy-to-cloud-run.sh"
+    "deployj": "bash ../../../scripts/deploy-to-cloud-run.sh"
   },
   "bugs": {
     "url": "https://github.com/yurikrupnik/mussia4/issues"

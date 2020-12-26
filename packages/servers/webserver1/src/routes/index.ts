@@ -59,9 +59,9 @@ const routes: Routes = [
     },
     {
         component: Login,
-        path: "/",
+        path: "/login",
         key: "login",
-        exact: true,
+        // exact: true,
     },
     // {
     //     component: Profile,
