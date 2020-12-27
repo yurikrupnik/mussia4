@@ -34,6 +34,8 @@ jobs:
                       ${{ runner.os }}-
             - name: Install Dependencies
               run: npm ci
+            - name: Docker ps
+              run: docker ps
             #            - name: Eslint
             #              run: npm run lint -- --since
             #            - name: Test
@@ -43,7 +45,7 @@ jobs:
             - uses: actions-hub/gcloud@master
               env:
                   PROJECT_ID: mussia4-299720
-                  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+                  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS_F}}
             - name: Deploy
               run: gcloud config list
 #              run: make deploy-languages
