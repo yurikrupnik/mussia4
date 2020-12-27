@@ -53,7 +53,12 @@ run-local-dev:
 	#export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
 	#echo $(GOOGLE_CLIENT_SECRET)
 	docker-compose -f docker-compose.dev.yaml up
-
+build-all-images:
+	#gcloud auth list
+	#gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET
+	#export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+	#echo $(GOOGLE_CLIENT_SECRET)
+	docker-compose build --parallel --force-rm
 
 create-tf-backed-bucket:
 	gsutil mb -p $(PROJECT_ID) -l europe-west1 gs://$(PROJECT_ID)-terraform

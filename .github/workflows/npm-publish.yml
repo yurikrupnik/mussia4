@@ -35,7 +35,9 @@ jobs:
             - name: Install Dependencies
               run: npm ci
             - name: Docker ps
-              run: docker ps
+              run: docker build -t lerna && docker ps
+            - name: Docker compose
+              run: make
             #            - name: Eslint
             #              run: npm run lint -- --since
             #            - name: Test
