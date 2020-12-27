@@ -59,7 +59,7 @@ build-all-images:
 	#export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
 	#echo $(GOOGLE_CLIENT_SECRET)
 	make create-file
-	docker-compose build --parallel --force-rm
+	docker-compose build webserver1
 
 create-tf-backed-bucket:
 	gsutil mb -p $(PROJECT_ID) -l europe-west1 gs://$(PROJECT_ID)-terraform
