@@ -71,7 +71,7 @@ deploy-languages:
       --image gcr.io/$(PROJECT_ID)/languages \
       --platform managed \
       --region europe-west1 \
-      --project ussia4-299720
+      --project $(PROJECT_ID)
 
 deploy-cloud-run:
 	echo pusssss
