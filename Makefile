@@ -5,6 +5,21 @@ define get-secret
 $(shell gcloud secrets versions access latest --secret=$(1) --project=$(PROJECT_ID))
 endef
 
+create-file:
+	export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+	echo $GOOGLE_CLIENT_SECRET > .env.dev
+	echo $(GOOGLE_CLIENT_SECRET) > .env.dev
+	echo "Ars=sd" > .env.dev
+	echo "append this text" >> .env.dev
+#	if [ -e $1 ]; then
+#      echo "File $1 already exists!"
+#    else
+#      echo >> $1
+#    fi
+
+create-envs:
+	export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+
 # todo check which apis can be added this way
 enable-compute-api:
 	gcloud services enable compute.googleapis.com
@@ -32,6 +47,13 @@ enable-gmail-api:
 run-local:
 	docker-compose up
 
+run-local-dev:
+	#gcloud auth list
+	#gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET
+	#export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
+	#echo $(GOOGLE_CLIENT_SECRET)
+	docker-compose -f docker-compose.dev.yaml up
+
 
 create-tf-backed-bucket:
 	gsutil mb -p $(PROJECT_ID) -l europe-west1 gs://$(PROJECT_ID)-terraform
@@ -46,7 +68,7 @@ push:
 
 deploy-languages:
 	gcloud run deploy languages \
-      --image gcr.io/mussia4/languages \
+      --image gcr.io/$PROJECT_ID/languages \
       --platform managed \
       --region europe-west1 \
       --project $PROJECT_ID

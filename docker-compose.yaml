@@ -81,13 +81,10 @@ services:
         build:
             context: packages/servers/webserver1
             args:
-                #        - port=9000
-                #                - NODE_ENV_DOCKER=true
-                #                #        - HOST=gateway1
-                #                - DATABASE_URL=mongodb://db/service1-db
-                #        - HOST=0.0.0.0
                 - modulePath=/packages/servers/webserver1
         container_name: webserver1
+        env_file:
+            - .env.dev
         environment:
             #            - DEST_PORT=8000
             #            - HOST=gateway1
@@ -97,10 +94,11 @@ services:
             - DB_URL=@cluster0.zurzw.mongodb.net/
             - DB_PASSWORD=AXnEdzgKsyg8XVaN
             - DB_USER=admin
-            - PORT=9000
+            - PORT=5001
+        #            - GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
         #      - NODE_ENV_DOCKER=true
         ports:
-            - 9000:9000
+            - 5001:5001
         command: npm run start
         depends_on:
             - db

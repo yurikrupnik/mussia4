@@ -24,13 +24,13 @@ services:
             context: .
             dockerfile: ./Dockerfile.dev
         container_name: web
+        env_file:
+            - .env.dev
         environment:
             - NODE_ENV_DOCKER=true
             - DB_USER=yuri
             - DB_URL=mongodb://db/mussia4
-        #            - GOOGLE_CLIENT_SECRET=$(echo $GOOGLE_CLIENT_SECRET)
-        #            - GOOGLE_CLIENT_SECRET=KyxjO9p4yA4xhz8UVpIxyu82
-        #            - GOOGLE_CLIENT_SECRET=gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET
+        #            - GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
         ports:
             - 4000:4000
             - 5001:5001
@@ -42,5 +42,7 @@ services:
             - ./packages/servers/webserver1/src:/app/packages/servers/webserver1/src
         #            - ./packages:/app/packages
         command: npm run start
+        #        command: >
+        #            bash -c "export GOOGLE_CLIENT_SECRET=$(echo $GOOGLE_CLIENT_SECRET)"
         depends_on:
             - db

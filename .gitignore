@@ -108,3 +108,4 @@ packages/**/dist
 packages/**/**/size-plugin.json
 terrraform/.terraform/
 *key.json
+.env.dev

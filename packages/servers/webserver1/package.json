@@ -14,7 +14,7 @@
     "modulePath": "/packages/servers/webserver1",
     "docker_image_name": "webserver1",
     "docker_image_org_name": "gcr.io",
-    "project": "mussia4",
+    "project": "mussia4-299720",
     "service": "webserver1",
     "db": "ds215759.mlab.com:15759/client-app-users"
   },
