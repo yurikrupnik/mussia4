@@ -56,7 +56,7 @@ jobs:
             - name: Deploy
               run: gcloud config list
             - name: auth gc
-              run: gcloud auth activate-service-account --key-file=${{secrets.GOOGLE_APPLICATION_CREDENTIALS_F}}
+              run: gcloud auth activate-service-account --key-file=${{secrets.google_application_credentials_f}}
             - name: Deploy after
               run: gcloud config list
 #              run: make deploy-languages
