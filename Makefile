@@ -58,6 +58,7 @@ build-all-images:
 	#gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET
 	#export GOOGLE_CLIENT_SECRET=$(gcloud secrets versions access latest --secret=GOOGLE_CLIENT_SECRET)
 	#echo $(GOOGLE_CLIENT_SECRET)
+	create-file
 	docker-compose build --parallel --force-rm
 
 create-tf-backed-bucket:
