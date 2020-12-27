@@ -48,13 +48,13 @@ jobs:
 
             - name: Deploy
               run: gcloud config list
-            - name: docker-compose
-              run: docker-compose build --parallel --force-rm
+            #            - name: docker-compose
+            #              run: docker-compose build --parallel --force-rm
             #            - name: gcloud auth
             #              run: gcloud config set account github@mussia4-299720.iam.gserviceaccount.com
             #                  gcloud config set project mussia4-299720
-            #            - name: Docker compose
-            #              run: make build-all-images
+            - name: Docker compose
+              run: make build-all-images
             #            - name: Eslint
             #              run: npm run lint -- --since
             #            - name: Test
