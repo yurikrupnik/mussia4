@@ -39,8 +39,9 @@ jobs:
             - name: Deploy
               run: gcloud config list
             - name: gcloud auth
-              run: gcloud gcloud config set account github@mussia4-299720.iam.gserviceaccount.com \
-                  gcloud gcloud config set project mussia4-299720
+              run: gcloud config set account github@mussia4-299720.iam.gserviceaccount.com \
+                  gcloud config set project mussia4-299720 \
+                  gcloud auth activate-service-account --key-file=${{secrets.google_application_credentials_f}}
             #            - name: Docker compose
             #              run: make build-all-images
             #            - name: Eslint
