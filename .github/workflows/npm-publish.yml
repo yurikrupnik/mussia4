@@ -45,7 +45,7 @@ jobs:
             - uses: actions-hub/gcloud@master
               env:
                   PROJECT_ID: mussia4-299720
-                  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS_F}}
+                  APPLICATION_CREDENTIALS: ${{secrets.google_application_credentials_f}}
             - name: Deploy
               run: gcloud config list
 #              run: make deploy-languages
