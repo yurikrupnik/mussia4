@@ -32,9 +32,11 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
+            - name: echo actor
+              run: echo ${{ github.actor }}
             - name: Install Dependencies
               run: npm ci
-            - name: Deploy
+            - name: Publish
               run: npm run npm-publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
