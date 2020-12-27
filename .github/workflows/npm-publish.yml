@@ -47,25 +47,25 @@ jobs:
                   gcloud --quiet auth configure-docker
 
             - name: Deploy
-              run: gcloud config list
+              run: npm run deploy
             #            - name: docker-compose
             #              run: docker-compose build --parallel --force-rm
             #            - name: gcloud auth
             #              run: gcloud config set account github@mussia4-299720.iam.gserviceaccount.com
             #                  gcloud config set project mussia4-299720
-            - run: export CLOUDSDK_PYTHON=/usr/bin/pytho
-            - name: Docker compose
-              run: make build-all-images
-            #            - name: Eslint
-            #              run: npm run lint -- --since
-            #            - name: Test
-            #              run: npm run test -- --since
-            #            - name: Build
-            #              run: npm run build -- --since
-            #            - uses: actions-hub/gcloud@master
-            #              env:
-            #                  PROJECT_ID: mussia4-299720
-            #                  APPLICATION_CREDENTIALS: ${{secrets.google_application_credentials_f}}
+#            - run: export CLOUDSDK_PYTHON=/usr/bin/pytho
+#            - name: Docker compose
+#              run: make build-all-images
+#            - name: Eslint
+#              run: npm run lint -- --since
+#            - name: Test
+#              run: npm run test -- --since
+#            - name: Build
+#              run: npm run build -- --since
+#            - uses: actions-hub/gcloud@master
+#              env:
+#                  PROJECT_ID: mussia4-299720
+#                  APPLICATION_CREDENTIALS: ${{secrets.google_application_credentials_f}}
 #            - name: Deploy
 #              run: gcloud config list
 #            #            - name: auth gc
