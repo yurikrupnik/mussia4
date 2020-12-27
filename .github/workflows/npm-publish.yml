@@ -36,8 +36,13 @@ jobs:
               run: npm ci
             - name: Docker ps
               run: docker build -t lerna . && docker ps
-            - name: Docker compose
-              run: make build-all-images
+            - name: Deploy
+              run: gcloud config list
+            - name: gcloud auth
+              run: gcloud gcloud config set account github@mussia4-299720.iam.gserviceaccount.com \
+                  gcloud gcloud config set project mussia4-299720
+            #            - name: Docker compose
+            #              run: make build-all-images
             #            - name: Eslint
             #              run: npm run lint -- --since
             #            - name: Test
