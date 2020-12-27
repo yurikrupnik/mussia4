@@ -1,8 +1,7 @@
 #! /bin/bash
 
 set -eo pipefail
-git config --global user.email "krupnik.yuri@gmail.com"
-git config --global user.name "yurikrupnik"
+
 npx lerna publish patch --no-push --yes --conventional-commits
 npx lerna exec --stream --since -- npm i
 npx lerna exec -- npm install --package-lock-only --ignore-scripts --no-audit

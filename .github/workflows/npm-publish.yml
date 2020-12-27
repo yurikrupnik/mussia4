@@ -36,6 +36,8 @@ jobs:
               run: echo ${{ github.actor }}
             - name: Install Dependencies
               run: npm ci
+            - run: git config --global user.email "krupnik.yuri@gmail.com" \
+                  git config --global user.name "yurikrupnik"
             - name: Publish
               run: npm run npm-publish
               env:
