@@ -41,13 +41,15 @@ jobs:
                   #                project_id: ${{ secrets.GCP_PROJECT_ID }}
                   service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_F }}
                   export_default_credentials: true
-            #            - name: Docker ps
-            #              run: docker build -t lerna . && docker ps
+            - name: Docker ps
+              run: docker build -t lerna . && docker ps
             - run: |-
                   gcloud --quiet auth configure-docker
 
             - name: Deploy
               run: gcloud config list
+            - name: docker-compose
+              run: docker-compose build --parallel --force-rm
             #            - name: gcloud auth
             #              run: gcloud config set account github@mussia4-299720.iam.gserviceaccount.com
             #                  gcloud config set project mussia4-299720
@@ -63,13 +65,13 @@ jobs:
             #              env:
             #                  PROJECT_ID: mussia4-299720
             #                  APPLICATION_CREDENTIALS: ${{secrets.google_application_credentials_f}}
-            - name: Deploy
-              run: gcloud config list
-            #            - name: auth gc
-            #              run: gcloud auth activate-service-account --key-file=${{secrets.google_application_credentials_f}}
-            - name: Deploy after
-              #              run: gcloud config list
-              run: make deploy-languages
+#            - name: Deploy
+#              run: gcloud config list
+#            #            - name: auth gc
+#            #              run: gcloud auth activate-service-account --key-file=${{secrets.google_application_credentials_f}}
+#            - name: Deploy after
+#              #              run: gcloud config list
+#              run: make deploy-languages
 #    npm-publish:
 #        runs-on: ubuntu-latest
 #        if: github.ref == 'refs/heads/main'
