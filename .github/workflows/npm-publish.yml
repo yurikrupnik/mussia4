@@ -45,7 +45,8 @@ jobs:
                   PROJECT_ID: mussia4
                   APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
             - name: Deploy
-              run: make deploy-languages
+              run: gcloud config list
+#              run: make deploy-languages
 #    npm-publish:
 #        runs-on: ubuntu-latest
 #        if: github.ref == 'refs/heads/main'
