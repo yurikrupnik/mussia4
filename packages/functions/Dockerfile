@@ -1,4 +1,4 @@
-FROM gcr.io/mussia4/lerna AS builder
+FROM gcr.io/mussia4-299720/lerna AS builder
 
 COPY . ./packages/functions
 
