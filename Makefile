@@ -68,7 +68,7 @@ push:
 
 deploy-languages:
 	gcloud run deploy languages \
-      --image gcr.io/$PROJECT_ID/languages \
+      --image gcr.io/mussia4-299720/languages \
       --platform managed \
       --region europe-west1 \
       --project $PROJECT_ID
