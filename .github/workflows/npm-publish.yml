@@ -20,7 +20,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{secrets.node_version}}
-                  registry-url: https://npm.pkg.github.com/
+                  registry-url: https://registry.npmjs.org/
             - name: Cache node modules
               uses: actions/cache@v2
               env:
