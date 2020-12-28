@@ -18,4 +18,4 @@ env_variables:
     DB_USER: admin
     DB_PASSWORD: AXnEdzgKsyg8XVaN
     DB_URL: "@cluster0.zurzw.mongodb.net/"
-    GOOGLE_CLIENT_SECRET: KyxjO9p4yA4xhz8UVpIxyu82
+    GOOGLE_CLIENT_SECRET: qYhchpZVxQqkr2y6aqfO8_-6
