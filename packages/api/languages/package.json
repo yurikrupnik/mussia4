@@ -40,7 +40,7 @@
     "url": "https://github.com/yurikrupnik/mussia4/issues"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-favicon": "^2.1.0",
