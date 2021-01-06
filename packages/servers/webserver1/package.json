@@ -58,7 +58,7 @@
     "@puzzle-mussia/button1": "^9.0.7",
     "@puzzle-mussia/form-input": "^4.0.1",
     "@puzzle-mussia/render-input": "^7.0.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcrypt": " ^5.0.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
