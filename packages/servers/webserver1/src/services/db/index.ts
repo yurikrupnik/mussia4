@@ -1,18 +1,26 @@
 import mongoose from "mongoose";
 import session from "express-session";
 import connect from "connect-mongo";
-import Users, { mock } from "../../api/users/model";
+import UserGroup, { mock } from "../../api/userGroup/model";
+import Promotions, { mock as promotionsMock } from "../../api/promotions/model";
 
 function createDbMock() {
-    // create "demo" user data
-    Users.find().then((res) => {
+    UserGroup.find().then((res) => {
         if (!res.length) {
-            Users.insertMany(mock);
+            UserGroup.insertMany(mock).then((useGroups) => {
+                const updatedPromotions = promotionsMock.map((a) => {
+                    // eslint-disable-next-line no-param-reassign
+                    a.userGroup = useGroups[0]._id;
+                    return a;
+                });
+                Promotions.insertMany(updatedPromotions);
+            });
         }
     });
 }
 
 createDbMock();
+
 export default (url: string) => {
     mongoose.connect(url, {
         useNewUrlParser: true,

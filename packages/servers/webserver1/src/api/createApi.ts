@@ -4,7 +4,7 @@ import request from "./request";
 type Api<T, U> = {
     name: string;
     getById: (key: string, id: string) => Promise<T>;
-    get: (key: string, params: Partial<T> & { projections?: keyof U[] }) => Promise<T[]>;
+    get: (key: string, params: Partial<T> & { projections?: keyof U[]; page?: number; limit?: number }) => Promise<T[]>;
     // getById: (id: string) => Promise<T>;
     post: (body: Partial<T>) => Promise<T>;
     put: (body: Partial<T>) => Promise<T>;
@@ -25,7 +25,7 @@ function handleResId(res: AxiosResponse): Promise<string> {
 function createApis<T, U>(url: string): Api<T, U> {
     return {
         name: url.split("/")[1],
-        get(key: string, params: Partial<T> & { projections?: keyof U[] }) {
+        get(key: string, params: Partial<T> & { projections?: keyof U[]; page?: number; limit?: number }) {
             return request.get(url, { params }).then((res) => handleResArray<T>(res));
         },
         // getByIdQuery(key: string, id: string) {

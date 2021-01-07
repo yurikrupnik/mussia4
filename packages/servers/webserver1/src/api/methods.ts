@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 // import omit from "lodash/omit";
-import mongoose from "mongoose";
+import mongoose, { QueryFindOptions } from "mongoose";
 // import { UserDocument } from "./users/model";
 // import { UserModel, UserDocument, UserFront } from "./users/model";
 // import { ProjectFront, ProjectDocument, ProjectModel } from "./projects/model";
@@ -41,17 +41,21 @@ function respondWithResult<T>(res: Response) {
 // }
 
 const list = <T extends mongoose.Model<any>>(Model: T) => (req: Request, res: Response) => {
-    // console.log("req.query", req.query); // got alsmost dynamic query
-    const { projections } = req.query;
-    // console.log("typeof projections;", typeof projections);
-    // console.log("projection", projection);
-    Model.find(req.query, projections, {})
+    const { projections, page, limit = 100 } = req.query;
+
+    const config: QueryFindOptions = {};
+    if (page) {
+        config.skip = Number(limit) * Number(page) || Number(limit);
+        config.limit = Number(limit);
+    }
+
+    console.log("config", config);
+    Model.find({}, projections, config)
+        .populate({
+            path: "userGroup",
+            select: "name",
+        })
         .then(respondWithResult(res))
-        // .then((entity) => {
-        //     next(entity);
-        // entity[0]
-        // res.status(200).json(entity);
-        // })
         .catch(handleError(res));
 };
 

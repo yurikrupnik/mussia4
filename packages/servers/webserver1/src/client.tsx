@@ -26,6 +26,22 @@ const theme: Theme = {
         //     main: '#b43fdc'
         // }
     },
+    typography: {
+        // useNextVariants: true,
+    },
+    overrides: {
+        // MUIDataTable: {
+        //   root: {}
+        // },
+        // MUIDataTableBodyRow: {
+        //     root: {
+        //         "&:nth-child(odd)": {
+        //             backgroundColor: "#f6f6f6",
+        //         },
+        //     },
+        // },
+        // MUIDataTableBodyCell: {},
+    },
 };
 
 // console.log("isProd", isProd);

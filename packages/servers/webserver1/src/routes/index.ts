@@ -6,7 +6,9 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 
 // import React from "react";
-import Main from "./Main";
+// import Main from "./Main";
+
+import Promotions from "./Promotions";
 // import Profile from "./Profile";
 // import Error from "./Error";
 // import Header from './Header';
@@ -45,7 +47,7 @@ import Main from "./Main";
 
 const routes: Routes = [
     {
-        component: Main,
+        component: Promotions,
         path: "/",
         key: "main",
         exact: true,
