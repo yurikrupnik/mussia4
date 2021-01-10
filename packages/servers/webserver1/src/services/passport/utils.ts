@@ -39,7 +39,7 @@ const localStrategyHandler = (req: Request, email: string, password: string, don
             // eslint-disable-next-line
             .then((user) => {
                 if (!user) {
-                    done({ message: "no suyser" }, null, { messages: ["lkok"] });
+                    done({ message: "no suyser" }, null, "omg some message");
                 } else {
                     return user;
                 }
@@ -50,6 +50,9 @@ const localStrategyHandler = (req: Request, email: string, password: string, don
 };
 
 const socialAppsRegisterCallback = (profile: any, token: string, refreshTocken: string, done: any) => () => {
+    console.log("token", token);
+
+    console.log("refreshTocken", refreshTocken);
     UserM.findOne({ id: profile.id })
         .then((user) => {
             if (user) {
@@ -84,7 +87,7 @@ const setSocialAuth = (provider: string) =>
     passport.authenticate(provider, {
         successRedirect: "/dashboard",
         failureRedirect: "/login",
-        scope: ["email", "profile"],
+        scope: ["email", "profile", "openid"],
     }); // handling fail with router
 
 const createSocialNetworkRoutes = (app: Application) => {

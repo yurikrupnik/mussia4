@@ -29,8 +29,8 @@ import TextField from "../../components/Forms/Inputs/TextField";
 // import { Context as LanguagesTypes } from "../../api/languages/context";
 // import { Context as Currencies } from "../../api/currencies/context";
 
-const logo = "https://res.cloudinary.com/amadeus7/image/upload/v1589968085/react-platform/logoOnboarding.svg";
-const logoBlack = "https://res.cloudinary.com/amadeus7/image/upload/v1603611128/react-platform/logoBlack.png";
+const logo = "";
+const logoBlack = "";
 
 const Login = () => {
     // const classes = loginStyles();

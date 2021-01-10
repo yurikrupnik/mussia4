@@ -107,25 +107,25 @@ const MaterialTablePromotions = function MaterialTablePromotions() {
                 </Grid>
             </Grid>
             <br />
-            <Grid container direction="row" alignItems="center" justify="space-between">
-                {data.length > 1 &&
-                    Object.keys(data[0])
-                        .map((next, i) => {
-                            if (["_id", "__v"].includes(next)) {
-                                return <></>;
-                            }
-                            return (
-                                <Grid key={i} item>
-                                    {next}
-                                </Grid>
-                            );
-                        }, [])
-                        .concat(
-                            <Grid key="ko" item>
-                                Actions
-                            </Grid>
-                        )}
-            </Grid>
+            {/*<Grid container direction="row" alignItems="center" justify="space-between">*/}
+            {/*    {data.length > 1 &&*/}
+            {/*        Object.keys(data[0])*/}
+            {/*            .map((next, i) => {*/}
+            {/*                if (["_id", "__v"].includes(next)) {*/}
+            {/*                    return <></>;*/}
+            {/*                }*/}
+            {/*                return (*/}
+            {/*                    <Grid key={i} item>*/}
+            {/*                        {next}*/}
+            {/*                    </Grid>*/}
+            {/*                );*/}
+            {/*            }, [])*/}
+            {/*            .concat(*/}
+            {/*                <Grid key="ko" item>*/}
+            {/*                    Actions*/}
+            {/*                </Grid>*/}
+            {/*            )}*/}
+            {/*</Grid>*/}
             <List
                 width={width}
                 height={height - 100}

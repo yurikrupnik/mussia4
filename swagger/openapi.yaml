@@ -1,0 +1,32 @@
+swagger: "2.0"
+info:
+    version: 1.0.0
+    title: omgapi
+    description: This is an example of using OAuth2 Access Code Flow in a specification to describe security to your API.
+
+host: omgapi.apigateway.mussia4-299720.cloud.goog
+
+produces:
+    - application/json
+
+paths:
+    /api/languages:
+        get:
+            summary: Server example operation
+            description: This is an example operation to show how security is applied to the call.
+            operationId: listLanguages
+            x-google-backend:
+                address: https://webserver1-tzkbjt7ira-ew.a.run.app/api/languages
+            responses:
+                200:
+                    description: OK
+    /api/users:
+        get:
+            summary: Server heartbeat users
+            description: This users.
+            operationId: listUsers
+            x-google-backend:
+                address: https://webserver1-tzkbjt7ira-ew.a.run.app
+            responses:
+                200:
+                    description: OK

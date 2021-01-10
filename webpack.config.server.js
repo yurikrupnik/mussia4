@@ -37,8 +37,8 @@ module.exports = (env, argv) => {
     // const isProd = true;
     // const isProd = process.env.NODE_ENV === "production";
     const isWatch = !!argv.watch;
-    const isProd = !!argv.watch;
-    console.log("isProd", isProd, argv.watch);
+    // const isProd = !!argv.watch;
+    // console.log("isProd", isProd, argv.watch);
     // const isDebug = env ? !!env.debug : false;
     console.log("process.env.NODE_ENV", process.env.NODE_ENV);
     // console.log("cwd", cwd);
@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
         },
         target: "node", // in order to ignore built-in modules like path, fs, etc.
         externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
-        // devtool: isProd ? "" : "eval-cheap-module-source-map",
+        devtool: isWatch ? "eval-cheap-module-source-map" : "cheap-source-map",
         entry,
         output: {
             path: path.resolve(cwd, "dist"),
@@ -61,7 +61,7 @@ module.exports = (env, argv) => {
             filename,
             publicPath: "/",
         },
-        mode: isWatch ? "production" : "development",
+        mode: isWatch ? "development" : "production",
         module: {
             rules: [
                 {

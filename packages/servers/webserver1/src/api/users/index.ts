@@ -1,3 +1,4 @@
+import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
 import express from "express";
 import jwt from "jsonwebtoken";
 import { Model as Mode, Document } from "mongoose";
@@ -11,9 +12,34 @@ import { generateHash } from "../../services/passport/crypt";
 // import { IUser } from "../../types";
 // import { IUser } from "../../types";
 
+const client = new SecretManagerServiceClient();
+// const [policy] = await client.getIamPolicy({
+//     resource: name,
+// });
+//
+// // Add the user with accessor permissions to the bindings list.
+// policy.bindings.push({
+//     // members: [''],
+//     role: "roles/secretmanager.secretAccessor",
+//     // members: [member],
+// });
 function createApiBackend<Doc extends Document, T extends Mode<Doc>>(url: string, Model: T) {
     const route = express.Router();
-    route.get(url, list(Model)); // array
+    route.get(
+        url,
+        async (req, res, next) => {
+            console.log("client.getProjectId()", await client.getProjectId());
+            // console.log("client.getProjectId()",);
+            const projectId = await client.getProjectId();
+            const url = `projects/${projectId}/secrets/aris/versions/latest`;
+            console.log({ url });
+            // client.accessSecretVersion({ name: url }).catch((err) => {
+            //     console.log("err", err);
+            // });
+            next();
+        },
+        list(Model)
+    ); // array
 
     route.get(`${url}/:id`, find(Model)); // object
     route.post(url, create(Model));

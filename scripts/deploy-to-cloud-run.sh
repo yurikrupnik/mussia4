@@ -25,4 +25,5 @@ echo 'Finished pushing'
 gcloud run deploy $npm_package_config_service \
   --image $gc_image \
   --platform managed \
+  --allow-unauthenticated \
   --region europe-west1

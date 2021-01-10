@@ -46,20 +46,21 @@ module.exports = (env, argv) => {
     console.log("process.env.NODE_ENV", process.env.NODE_ENV);
     // const isProd = process.env.NODE_ENV === "production";
     const isWatch = !!argv.watch;
-    const isProd = !!argv.watch;
-    console.log("isProd", isProd, argv.watch);
+    // const isProd = !!argv.watch;
+    // console.log("isProd", isProd, argv.watch);
     // const config = isProd ? {} : require(path.resolve(cwd, './src/config')); // eslint-disable-line
 
     return {
         context: path.resolve(process.cwd(), "src"),
         optimization: {
-            minimizer: [isProd ? new ESBuildMinifyPlugin() : noop],
+            minimizer: [!isWatch ? new ESBuildMinifyPlugin() : noop],
         },
         target: "web",
         resolve: {
             extensions: [".ts", ".tsx", ".json", ".js", ".jsx", ".css", ".scss"],
             alias,
         },
+        devtool: isWatch ? "eval-cheap-module-source-map" : "cheap-source-map",
         // devtool: isProd ? "source-map" : "eval-cheap-module-source-map",
         entry: "./client.tsx",
         output: {
@@ -69,7 +70,7 @@ module.exports = (env, argv) => {
             path: path.resolve(process.cwd(), "dist/assets"),
             publicPath: "/",
         },
-        mode: isProd ? "production" : "development",
+        mode: isWatch ? "development" : "production",
         module: {
             rules: [
                 {
@@ -84,13 +85,13 @@ module.exports = (env, argv) => {
                     test: /\.(css|scss)$/,
                     use: [
                         "css-hot-loader",
-                        !isProd ? "style-loader" : MiniCssExtractPlugin.loader,
+                        isWatch ? "style-loader" : MiniCssExtractPlugin.loader,
                         {
                             loader: "css-loader",
                             options: {
-                                modules: {
-                                    localIdentName: isProd ? "[hash:base64]" : "[local]--[hash:base64:5]",
-                                },
+                                // modules: {
+                                //     localIdentName: !isWatch ? "[hash:base64]" : "[local]--[hash:base64:5]",
+                                // },
                             },
                         },
                         {

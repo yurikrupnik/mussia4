@@ -1,4 +1,4 @@
-FROM gcr.io/mussia4-299720/lerna AS builder
+FROM yurikrupnik/monorepo-builder AS builder
 ARG port=8080
 ENV PORT=$port
 

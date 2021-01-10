@@ -7,9 +7,9 @@ import TextField from "@material-ui/core/TextField";
 // import times from "lodash/times";
 // import api from "../../api/users/api";
 // import { useHistory } from "react-router-dom";
-import { useToggle, useIdle } from "react-use";
+// import { useToggle, useIdle } from "react-use";
 import { IUser } from "../../types";
-import useUsers from "../../hooks/users";
+// import useUsers from "../../hooks/users";
 // import usersApi from "../../api/users/api";
 // import { useToggle } from "../../hooks";
 // import { useToggle, useIdle } from "react-use";
@@ -17,10 +17,10 @@ import useUsers from "../../hooks/users";
 
 const Main: React.FC = () => {
     // const history = useHistory();
-    const users = useUsers();
-    const [s] = useToggle(false);
-    const isIdle = useIdle(3e3);
-    console.log("users", users, s, isIdle);
+    // const users = useUsers();
+    // const [s] = useToggle(false);
+    // const isIdle = useIdle(3e3);
+    // console.log("users", users, s, isIdle);
     const [params, setEmail] = useState<Partial<IUser>>({});
     const handleChange = useCallback((e) => {
         setEmail(e.target.value);

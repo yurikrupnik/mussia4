@@ -13,7 +13,15 @@ import { Response, Request } from "express";
 
 const func1 = (req: Request, res: Response) => {
     console.log("ok"); // eslint-disable-line
-    res.status(200).json({ ok: "yes" });
+    res.send(`<!DOCTYPE html>
+<head>
+  <title>Saying Hello</title>
+</head>
+<body>
+  Hello, <b>World!</b><br>
+  Hello, <b>dev.to!</b><br>
+</body>`);
+    // res.status(200).json({ ok: "yes" });
     // const dbURL = 'mongodb://yuri:ludmila900@ds263876.mlab.com:63876/client-app-projects';
     // mongoose.connect(dbURL);
     //
