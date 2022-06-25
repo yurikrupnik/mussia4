@@ -43,7 +43,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.9.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.7"
   },
   "jest": {
     "collectCoverage": true,
