@@ -103,6 +103,6 @@
     "tabWidth": 4
   },
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^1.6.4"
   }
 }
